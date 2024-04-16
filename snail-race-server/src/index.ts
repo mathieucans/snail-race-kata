@@ -5,8 +5,10 @@ const app = express()
 const port = process.env.PORT || 8000;
 
 const server = new SnailRaceServer();
+
+setInterval(() => server.collectNewRaces(), 60000);
+
 app.get('/results', (req: Request, res: Response) => {
-    server.collectNewRaces();
     res.json({races: server.races()})
 });
 
