@@ -6,6 +6,7 @@ const port = process.env.PORT || 8000;
 
 const server = new SnailRaceServer();
 app.get('/results', (req: Request, res: Response) => {
+    server.collectNewRaces();
     res.json({races: server.races()})
 });
 

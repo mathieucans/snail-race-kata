@@ -19,7 +19,13 @@ export class SnailRaceServer {
     }
 
     races(): Array<SnailRaceResult> {
-
         return this._races
+    }
+
+    public collectNewRaces() {
+        const now = Date.now();
+        if ((now - this._races[0].timestamp > 5 * MINUTES)) {
+            this._races.unshift(new RandomSnailRace().generateNewRaceResult(now))
+        }
     }
 }

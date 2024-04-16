@@ -1,5 +1,5 @@
     export class RandomSnailRace {
-    generateNewRaceResult(timestamp: Number): SnailRaceResult {
+    generateNewRaceResult(timestamp: number): SnailRaceResult {
         const race = new Array<Snail>(...snails)
         race.sort( () => Math.random() * 2 -1)
         return new SnailRaceResult(
@@ -20,8 +20,8 @@ export class Snail {
 
 export class SnailRaceResult {
     constructor(
-        public readonly raceId: Number,
-        public readonly timestamp: Number,
+        public readonly raceId: number,
+        public readonly timestamp: number,
         public readonly podium: Array<Snail>
     ) {
     }
