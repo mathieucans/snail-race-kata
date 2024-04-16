@@ -7,8 +7,6 @@ describe('RandomSnailRace', () => {
     test('create a random new race result', () => {
         const results = randomSnailRace.generateNewRaceResult(Date.now())
 
-        console.log(results.podium)
-
         expect(results).toBeInstanceOf(SnailRaceResult)
         expect(results.podium.length).toEqual(3)
         expect(results.podium.some(e => e === undefined)).toBe(false)

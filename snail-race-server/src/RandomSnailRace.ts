@@ -1,13 +1,20 @@
     export class RandomSnailRace {
     generateNewRaceResult(timestamp: number): SnailRaceResult {
-        const race = new Array<Snail>(...snails)
-        race.sort( () => Math.random() * 2 -1)
+        const race = this.shuffle(snails);
         return new SnailRaceResult(
             Math.round(Math.random() * 1000000),
             timestamp,
             [race[0], race[1], race[2]])
     }
-}
+
+        private shuffle(participants:Snail[]) {
+            let race = participants
+                .map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value)
+            return race;
+        }
+    }
 
 
 export class Snail {
