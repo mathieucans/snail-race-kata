@@ -5,7 +5,7 @@ import {RandomSnailRace, Snail, SnailRaceResult, snails} from "./RandomSnailRace
 describe('RandomSnailRace', () => {
     let randomSnailRace = new RandomSnailRace();
     test('create a random new race result', () => {
-        const results = randomSnailRace.generateNewRaceResult()
+        const results = randomSnailRace.generateNewRaceResult(Date.now())
 
         console.log(results.podium)
 
