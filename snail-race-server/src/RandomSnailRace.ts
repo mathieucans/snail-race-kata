@@ -3,7 +3,7 @@
         const race = new Array<Snail>(...snails)
         race.sort( () => Math.random() * 2 -1)
         return new SnailRaceResult(
-            Math.random() * 10000,
+            Math.round(Math.random() * 1000000),
             timestamp,
             [race[0], race[1], race[2]])
     }
