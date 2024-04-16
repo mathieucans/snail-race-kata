@@ -1,4 +1,4 @@
-export class RandomSnailRace {
+    export class RandomSnailRace {
     generateNewRaceResult(): SnailRaceResult {
         const race = new Array<Snail>(...snails)
         race.sort( () => Math.random() * 2 -1)

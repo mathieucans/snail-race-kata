@@ -1,12 +1,12 @@
 import express, {Request, Response} from "express";
+import {SnailRaceServer} from "./SnailRaceServer";
 
 const app = express()
 const port = process.env.PORT || 8000;
 
+const server = new SnailRaceServer();
 app.get('/results', (req: Request, res: Response) => {
-    res.json({races:[
-            {id:123465, date:Date.now(), podium:[{number:5, name : 'Wind'}, {number:3, name:'Jacky brown'}, {number:22, name:'bill'}]}
-        ]})
+    res.json({races: server.races()})
 });
 
 app.listen(port, () => {
