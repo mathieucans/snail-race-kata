@@ -1,19 +1,26 @@
-Snail Race Kata - snail race bet (typescript)
+🐌 Snail Race Kata - snail race bet (typescript)
 =====
 
-# Setup
+# Requirement setup
 
-Start mongodb locally
+1. Start mongodb locally
 
 ```shell
     docker run --rm -p 27017:27017 --name mongo_contract_testing -d mongo
 ```
 
-Start the snail race server locally
+2. Start the snail race server locally
 
+Run the docker hub image 
 ```shell
-   npm run dev --prefix ../../snail-race-server
+   docker run --rm -d -p8000:8000 --name snail-race-server mathieucans/snail-race-server:1.0
 ```
+
+Verify the race server status
+```shell
+   curl localhost:8000/results
+```
+
 
 # Instructions
 
