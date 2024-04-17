@@ -7,7 +7,9 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "package": "docker build -t snail-race-server:1.0 .",
+    "run-in-docker": "docker run --rm -d -p8000:8000 --name snail-race-server snail-race-server:1.0"
   },
   "author": "",
   "license": "MIT",

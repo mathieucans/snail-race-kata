@@ -9,6 +9,12 @@ Start mongodb locally
     docker run --rm -p 27017:27017 --name mongo_contract_testing -d mongo
 ```
 
+Start the snail race server locally
+
+```shell
+   npm run dev --prefix ../../snail-race-server
+```
+
 # Instructions
 
 1. Install dependencies
