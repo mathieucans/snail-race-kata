@@ -9,9 +9,9 @@ export class Bet {
 
 export class PodiumPronostic {
     constructor(
-        public readonly first: Number,
-        public readonly second: Number,
-        public readonly third: Number
+        public readonly first: number,
+        public readonly second: number,
+        public readonly third: number
     ) {
 
     }
