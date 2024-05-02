@@ -18,7 +18,10 @@ describe('MongoDbBetRepository', () => {
         mongoClient.close()
     })
 
-    test('this test fail', async () => {
+    test('register a bet', async () => {
+        expect(true).toEqual(false);
+    })
+    test('retrieve bet by time range', async () => {
         expect(true).toEqual(false);
     })
 })
