@@ -6,7 +6,7 @@ export class MongoDbBetRepository implements BetRepository {
     constructor(private db: Db) {
     }
 
-    registerBet(bet: Bet): Promise<void> {
+    register(bet: Bet): Promise<void> {
         throw new Error("Method not implemented.");
     }
     findByDateRange(from: number, to: number): Promise<Bet[]> {
