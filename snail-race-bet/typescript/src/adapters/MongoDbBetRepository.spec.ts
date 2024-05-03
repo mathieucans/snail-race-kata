@@ -1,5 +1,6 @@
 import {MongoClient} from "mongodb";
 import {MongoDbBetRepository} from "./MongoDbBetRepository";
+import {Bet, PodiumPronostic} from "../domain/Bet";
 
 describe('MongoDbBetRepository', () => {
     let mongoClient: MongoClient;
@@ -18,9 +19,24 @@ describe('MongoDbBetRepository', () => {
         mongoClient.close()
     })
 
-    test('register a bet', async () => {
-        expect(true).toEqual(false);
+
+    // TODO
+    // change
+
+    test('get a bet within the time range', async () => {
+        let middleOfDay = new Date(2020, 1, 1, 12, 0, 0).getTime();
+        let registeredBet = new Bet("trump", new PodiumPronostic(1, 2, 3),middleOfDay);
+        await repository.register(registeredBet)
+
+        let startOfDay = new Date(2020, 1, 1, 0, 0, 0).getTime();
+        let endOfDay = new Date(2020, 1, 1, 23, 59, 59).getTime();
+        const bets = await repository.findByDateRange(startOfDay, endOfDay)
+
+        expect(bets).toHaveLength(1)
+        expect(bets).toContainEqual(registeredBet)
     })
+
+    // TODO rename with do not retrive bets outside date range
     test('retrieve bet by time range', async () => {
         expect(true).toEqual(false);
     })
