@@ -38,6 +38,16 @@ describe('MongoDbBetRepository', () => {
 
     // TODO rename with do not retrive bets outside date range
     test('retrieve bet by time range', async () => {
-        expect(true).toEqual(false);
+        let nextDay = new Date(2020, 1, 2, 0, 0, 0).getTime();
+        let registeredBet = new Bet("trump", new PodiumPronostic(1, 2, 3),nextDay);
+        await repository.register(registeredBet)
+
+        let startOfDay = new Date(2020, 1, 1, 0, 0, 0).getTime();
+        let endOfDay = new Date(2020, 1, 1, 23, 59, 59).getTime();
+        const bets = await repository.findByDateRange(startOfDay, endOfDay)
+
+        expect(bets).toHaveLength(0)
+
+
     })
 })

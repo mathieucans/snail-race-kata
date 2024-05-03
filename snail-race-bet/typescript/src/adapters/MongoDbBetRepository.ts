@@ -11,7 +11,9 @@ export class MongoDbBetRepository implements BetRepository {
 
     }
     async findByDateRange(from: number, to: number): Promise<Bet[]> {
-        let listOfDocs = await this.getCollection().find().toArray();
+        let listOfDocs = await this.getCollection().find(
+        {timestamp: {$gte: from, $lte: to}}
+        ).toArray();
         return listOfDocs.map(doc => new Bet(doc.gambler, doc.pronostic, doc.timestamp));
     }
 
