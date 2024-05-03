@@ -24,7 +24,6 @@ export class ContractTest {
             expect(bets).toContainEqual(registeredBet)
         })
 
-        // TODO rename with do not retrive bets outside date range
         test('retrieve bet by time range', async () => {
             let nextDay = new Date(2020, 1, 2, 0, 0, 0).getTime();
             let registeredBet = new Bet("trump", new PodiumPronostic(1, 2, 3), nextDay);

@@ -47,3 +47,16 @@ Verify the race server status
       1. The podium match exactly the race result
       2. The bet has been registered at least 3 seconds before the race timestamp
       3. A bet is valid only for the next race
+
+## TODO
+
+   test in step 1 rename with do not retrive bets outside date range
+   step 2 : add domain shield for domain race Provider
+   step 2 : facilitate http parsing to improve learner onboarding
+   Anti-corruption-layer for the snail race provider
+   
+## Notes 3/5
+
+- step 1 a pris 1h (donc chronophage)
+- voir comment faire les tests de contrat mieux avec typescript
+- galère avec fetch (ce serait pire avec java)
