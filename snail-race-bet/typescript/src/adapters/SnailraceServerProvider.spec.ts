@@ -1,7 +1,8 @@
+import {Snail, SnailRaceResult} from "../domain/SnailRaceResult"
 
 
 interface SnailRaceProvider {
-    races() : Promise<Array<SnailRaceResult>>
+    races(): Promise<Array<SnailRaceResult>>
 }
 
 
@@ -20,8 +21,13 @@ export interface Podium {
     number: number
 }
 
-function parseBody(input: SnailRaceResultBody) : SnailRaceResult[]{
-    return [];
+function parseBody(input: SnailRaceResultBody): SnailRaceResult[] {
+    return input.races.map((race) => {
+        return new SnailRaceResult(race.raceId, race.timestamp, race.podium.map((snail) => {
+            return new Snail(snail.number, snail.name)
+        }))
+    })
+
 }
 
 describe('Snail race result', () => {
@@ -10824,6 +10830,8 @@ describe('Snail race result', () => {
                 }
             ]
         }
-        expect(parseBody(input)).toContainEqual([new SnailRaceResult(707506, 1714740454989, [new Snail(8, "Phar Lap"), new Snail(10, "Red Rum"), new Snail(4, "American Pharoah")])]);
+        let expectedPodium = [new Snail(8, "Phar Lap"), new Snail(10, "Red Rum"), new Snail(4, "American Pharoah")];
+        let result = parseBody(input);
+        expect(result).toContainEqual(new SnailRaceResult(707506, 1714740454989, expectedPodium));
     });
 })
