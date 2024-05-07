@@ -1,46 +1,40 @@
 import {Snail, SnailRaceResult} from "./SnailRaceResult";
 import {InMemoryBetRepository} from "../adapters/InMemoryBetRepository";
-import {Bet, PodiumPronostic} from "./Bet";
-import {BetRepository} from "./BetRepository";
+import {PodiumPronostic} from "./Bet";
 import {FakeSnailRaceProvider} from "../adapters/FakeSnailRaceProvider";
-
-class SnailBetUsecase {
-    constructor(private repository: BetRepository, private resultProvider: FakeSnailRaceProvider) {
-
-    }
-
-    async register(gamblerName: string, podiumPronostic: PodiumPronostic) {
-        await this.repository.register(new Bet(gamblerName, podiumPronostic, Date.now()))
-
-    }
-
-    async findWinners(): Promise<string[]> {
-        let allBets = await this.repository.findByDateRange(0, Date.now());
-        let raceResults = await this.resultProvider.getRaces();
-        let raceResult = raceResults.results[0];
-        return allBets.filter(bet => {
-            return bet.pronostic.first === raceResult.podium[0].number &&
-                bet.pronostic.second === raceResult.podium[1].number &&
-                bet.pronostic.third === raceResult.podium[2].number;
-        }).map(bet => bet.gambler);
-
-    }
-}
+import {SnailBetUsecase} from "./SnailBetUsecase";
+import {FakeClock} from "./FakeClock";
+import now = jest.now;
 
 describe('SnailBetUsecase', () => {
+    let resultProvider: FakeSnailRaceProvider;
+
+    let snailBetUsecase: SnailBetUsecase;
+    let clock: FakeClock;
+    let now: number;
+    beforeEach(() => {
+
+        clock = new FakeClock(Date.now());
+        resultProvider = new FakeSnailRaceProvider();
+        snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository(), resultProvider, clock);
+        let longTimeAgo = Date.parse('2020-01-01T00:00:00Z');
+        clock.setDate(longTimeAgo) // all bets are registered at this time
+
+        now = Date.now();
+    });
+
     it('should list the gamblers that find the exact podium', async () => {
         // given
-        const snailRaceResult = new SnailRaceResult(1, 1, [
+        await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
+
+        const snailRaceResult = new SnailRaceResult(1, now, [
             new Snail(1, 'Turbo'),
             new Snail(2, 'Flash'),
             new Snail(3, 'Speedy')
         ]);
 
-        const resultProvider = new FakeSnailRaceProvider()
         resultProvider.addRaceResult(snailRaceResult);
 
-        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository(), resultProvider);
-        await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
 
         // when
         const winners = await snailBetUsecase.findWinners();
@@ -51,20 +45,19 @@ describe('SnailBetUsecase', () => {
 
     it("if you dont have the exact podium, you don't win", async () => {
 // given
-        const snailRaceResult = new SnailRaceResult(1, 1, [
-            new Snail(1, 'Turbo'),
-            new Snail(2, 'Flash'),
-            new Snail(3, 'Speedy')
-        ]);
-        const resultProvider = new FakeSnailRaceProvider()
-        resultProvider.addRaceResult(snailRaceResult);
 
-        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository(), resultProvider);
         await snailBetUsecase.register('Frank', new PodiumPronostic(3, 2, 1));
         await snailBetUsecase.register('Bob', new PodiumPronostic(1, 3, 2));
         await snailBetUsecase.register('Charlie', new PodiumPronostic(2, 1, 3));
         await snailBetUsecase.register('David', new PodiumPronostic(2, 3, 1));
         await snailBetUsecase.register('Eve', new PodiumPronostic(3, 1, 2));
+
+        const snailRaceResult = new SnailRaceResult(1, now, [
+            new Snail(1, 'Turbo'),
+            new Snail(2, 'Flash'),
+            new Snail(3, 'Speedy')
+        ]);
+        resultProvider.addRaceResult(snailRaceResult);
 
         const winners = await snailBetUsecase.findWinners();
         expect(winners).toEqual([])
@@ -72,5 +65,25 @@ describe('SnailBetUsecase', () => {
     })
 
     // other snails?
-    it.todo("if you register too late, you don't win")
+    it("if you register too late, you don't win", async () => {
+// given
+        //setdate betdate
+        let betDate = Date.parse('2020-01-01T00:00:00Z');
+        clock.setDate(betDate);
+        await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
+
+        let raceDate = betDate + 2999;
+        const snailRaceResult = new SnailRaceResult(1, raceDate, [
+            new Snail(1, 'Turbo'),
+            new Snail(2, 'Flash'),
+            new Snail(3, 'Speedy')
+        ]);
+        resultProvider.addRaceResult(snailRaceResult);
+
+        // when
+        const winners = await snailBetUsecase.findWinners();
+
+        // then
+        expect(winners).toEqual([]);
+    })
 });

@@ -77,3 +77,4 @@ Step 2 :
 
 step 3 : 
  - L'implementation du Fake pose des problème avec les deux implémentations. Ca fait des choses un peu compliquée
+ - Gestion du temps est compliqué
