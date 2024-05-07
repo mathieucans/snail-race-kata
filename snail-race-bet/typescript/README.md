@@ -63,3 +63,14 @@ Verify the race server status
 - step 1 a pris 1h (donc chronophage)
 - voir comment faire les tests de contrat mieux avec typescript
 - galère avec fetch (ce serait pire avec java)
+
+Step 2 : 
+- Pas beaucoup de choses dans le test de contrat du provider de course
+  - on pourrait rajouter dans le contrat le fait que le podium est composé de 3, snails différents
+  - Pour réduire l'entropie : 
+    - on pourrait tester le fait que c'est dans l'ordre chronologique inverse
+    - on pourrait tester que les noms comment par un majuscule, est-ce que deux snails apparraissent avec toujours le même nom. Est-ce que le snail à toujours le ma^me id
+    - Est-ce que jean-marie est toujours avec un tiret ou avec un espace ? Accents respectés ?
+  - le fake n'est pas dynamique, mettre ces choses sont uniquement dans le test du fake, difficile à mettre dans le contrat
+  - Comme ce n'est pas facile de stabiliser le test de contrat, on passe assez vite à des tests plus traditionnel sur le paring
+  - On a mis une bonne heure avec quelques galères sur l'export
