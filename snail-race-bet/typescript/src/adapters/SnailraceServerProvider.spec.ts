@@ -30,16 +30,25 @@ function parseBody(input: SnailRaceResultBody): SnailRaceResult[] {
 
 }
 
+class ServerSnailRaceProvider {
+    async getRaces() {
+        const response = await fetch('http://localhost:8000/results')
+
+        let result: any = await response.json();
+
+        return parseBody(result)
+
+    }
+}
+
 describe('Snail race result', () => {
 
     test('return', async () => {
-        const response = await fetch('http://localhost:8000/results')
 
-        expect(response.status).toEqual(200)
+        const snailRaceResults = await new ServerSnailRaceProvider().getRaces()
 
-        let result: any = await response.json();
-        expect(result["races"]).not.toHaveLength(0)
-
+        expect(snailRaceResults).not.toHaveLength(0)
+        expect(snailRaceResults[0]).toBeInstanceOf(SnailRaceResult)
 
     })
 
