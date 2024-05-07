@@ -2,6 +2,7 @@ import {Snail, SnailRaceResult} from "./SnailRaceResult";
 import {InMemoryBetRepository} from "../adapters/InMemoryBetRepository";
 import {Bet, PodiumPronostic} from "./Bet";
 import {BetRepository} from "./BetRepository";
+import {FakeSnailRaceProvider} from "../adapters/FakeSnailRaceProvider";
 
 class SnailBetUsecase {
     constructor(private repository: BetRepository) {
@@ -31,6 +32,8 @@ describe('SnailBetUsecase', () => {
             new Snail(3, 'Speedy')
         ]);
 
+        const resultProvider = new FakeSnailRaceProvider()
+        resultProvider.addRaceResult(snailRaceResult);
         const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository());
         await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
 

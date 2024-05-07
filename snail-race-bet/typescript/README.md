@@ -74,3 +74,6 @@ Step 2 :
   - le fake n'est pas dynamique, mettre ces choses sont uniquement dans le test du fake, difficile à mettre dans le contrat
   - Comme ce n'est pas facile de stabiliser le test de contrat, on passe assez vite à des tests plus traditionnel sur le paring
   - On a mis une bonne heure avec quelques galères sur l'export
+
+step 3 : 
+ - L'implementation du Fake pose des problème avec les deux implémentations
