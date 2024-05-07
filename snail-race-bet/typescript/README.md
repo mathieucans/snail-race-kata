@@ -43,6 +43,9 @@ Verify the race server status
    2. Use the same tests to implement a InMemorySnailRaceProvider 
 3. Use simulators to write application test following the business rules
    1. The application can register bet
+      * registering a bet is done by providing
+         * gamblerId 
+         * [snail1, snail2, snail3] where snail1 is the number of snail expected to win, snail2 is the second and snail3 is the third
    2. The application lists the winners according to last race ran. To win a bet :
       1. The podium match exactly the race result
       2. The bet has been registered at least 3 seconds before the race timestamp
