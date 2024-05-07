@@ -15,3 +15,8 @@ export class SnailRaceResult {
     }
 
 }
+
+export class SnailRaceResults {
+    constructor(public readonly results:SnailRaceResult[]) {
+    }
+}

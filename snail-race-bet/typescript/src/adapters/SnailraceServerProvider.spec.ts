@@ -1,4 +1,4 @@
-import {Snail, SnailRaceResult} from "../domain/SnailRaceResult"
+import {Snail, SnailRaceResult, SnailRaceResults} from "../domain/SnailRaceResult"
 
 
 interface SnailRaceProvider {
@@ -36,21 +36,26 @@ class ServerSnailRaceProvider {
 
         let result: any = await response.json();
 
-        return parseBody(result)
+        return new SnailRaceResults(parseBody(result))
 
     }
 }
 
-describe('Snail race result', () => {
-
+function snailRaceProviderContract(serverSnailRaceProvider: ServerSnailRaceProvider) {
     test('return', async () => {
 
-        const snailRaceResults = await new ServerSnailRaceProvider().getRaces()
+        const snailRaceResults = await serverSnailRaceProvider.getRaces()
 
-        expect(snailRaceResults).not.toHaveLength(0)
-        expect(snailRaceResults[0]).toBeInstanceOf(SnailRaceResult)
+        expect(snailRaceResults.results).not.toHaveLength(0)
+        expect(snailRaceResults).toBeInstanceOf(SnailRaceResults)
 
     })
+}
+
+describe('Snail race result', () => {
+    const serverSnailRaceProvider = new ServerSnailRaceProvider();
+
+    snailRaceProviderContract(serverSnailRaceProvider);
 
     it('should ', () => {
         const input = {
