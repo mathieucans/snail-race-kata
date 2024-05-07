@@ -1,8 +1,6 @@
 import {Snail, SnailRaceResult, SnailRaceResults} from "../domain/SnailRaceResult";
+import {SnailRaceProvider} from "../domain/SnailRaceProvider";
 
-interface SnailRaceProvider {
-    races(): Promise<Array<SnailRaceResult>>
-}
 
 export interface SnailRaceResultBody {
     races: Race[]
@@ -28,8 +26,8 @@ export function parseSnailRaceResult(input: SnailRaceResultBody): SnailRaceResul
 
 }
 
-export class ServerSnailRaceProvider {
-    async getRaces() {
+export class ServerSnailRaceProvider implements SnailRaceProvider {
+    async getRaces() : Promise<SnailRaceResults> {
         const response = await fetch('http://localhost:8000/results')
 
         let result: any = await response.json();

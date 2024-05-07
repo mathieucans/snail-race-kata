@@ -1,5 +1,6 @@
 import {Snail, SnailRaceResult, SnailRaceResults} from "../domain/SnailRaceResult"
-import {parseSnailRaceResult, ServerSnailRaceProvider} from "./ServerSnailRaceProvider";
+import {ServerSnailRaceProvider} from "./ServerSnailRaceProvider";
+import {SnailRaceProvider} from "../domain/SnailRaceProvider";
 
 
 function snailRaceProviderContract(serverSnailRaceProvider: ServerSnailRaceProvider) {
@@ -19,3 +20,16 @@ describe('Snail race result', () => {
     snailRaceProviderContract(serverSnailRaceProvider);
 });
 
+class FakeSnailRaceProvider implements SnailRaceProvider {
+    async getRaces(): Promise<SnailRaceResults> {
+        return new SnailRaceResults([new SnailRaceResult(123, 123456, [
+            new Snail(5,'jo'),
+            new Snail(8,'arthur'),
+            new Snail(10,'iris'),
+        ])])
+    }
+}
+
+describe('Fake snail race provider', () => {
+    snailRaceProviderContract(new FakeSnailRaceProvider())
+});
