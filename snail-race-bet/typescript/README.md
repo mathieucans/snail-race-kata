@@ -78,3 +78,18 @@ Step 2 :
 step 3 : 
  - L'implementation du Fake pose des problème avec les deux implémentations. Ca fait des choses un peu compliquée
  - Gestion du temps est compliqué
+
+
+Mes réflexions sur le step 3
+ - Peut être ajouter les exemples de test dans l'énoncé :
+   - should list the gamblers that find the exact podium
+   - if you dont have the exact podium, you don't win
+   - if you register less than 3 seconds before race date, you don't win
+   - you don't win outdated races (ou application list only winner for last race)
+ - on a mis plus d'une heure pour faire l'exercice
+ - Question : peut être que c'est trop compliqué l'accès aux courses par date range ?
+   Quand on a codé le métier, on a mis toutes les dates 0=>now 
+ - Finalement on voit bien l'utilité du InMemoryRepository vis a vis des mock. 
+   - L'exercice marche bien sur ce point là
+   - Peut être que si on montre un exemple de comment ca serait en mock ca convaiquerait mieux
+ - Un truc qui marche 
