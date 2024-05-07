@@ -44,7 +44,7 @@ Verify the race server status
 3. Use simulators to write application test following the business rules
    1. The application can register bet
       * registering a bet is done by providing
-         * gamblerId 
+         * gambler name
          * [snail1, snail2, snail3] where snail1 is the number of snail expected to win, snail2 is the second and snail3 is the third
    2. The application lists the winners according to last race ran. To win a bet :
       1. The podium match exactly the race result
