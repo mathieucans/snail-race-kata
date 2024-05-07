@@ -76,4 +76,4 @@ Step 2 :
   - On a mis une bonne heure avec quelques galères sur l'export
 
 step 3 : 
- - L'implementation du Fake pose des problème avec les deux implémentations
+ - L'implementation du Fake pose des problème avec les deux implémentations. Ca fait des choses un peu compliquée

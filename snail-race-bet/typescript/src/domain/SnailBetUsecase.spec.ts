@@ -5,7 +5,7 @@ import {BetRepository} from "./BetRepository";
 import {FakeSnailRaceProvider} from "../adapters/FakeSnailRaceProvider";
 
 class SnailBetUsecase {
-    constructor(private repository: BetRepository) {
+    constructor(private repository: BetRepository, private resultProvider: FakeSnailRaceProvider) {
 
     }
 
@@ -16,8 +16,12 @@ class SnailBetUsecase {
 
     async findWinners(): Promise<string[]> {
         let allBets = await this.repository.findByDateRange(0, Date.now());
+        let raceResults = await this.resultProvider.getRaces();
+        let raceResult = raceResults.results[0];
         return allBets.filter(bet => {
-            return bet.pronostic.first === 1 && bet.pronostic.second === 2 && bet.pronostic.third === 3;
+            return bet.pronostic.first === raceResult.podium[0].number &&
+                bet.pronostic.second === raceResult.podium[1].number &&
+                bet.pronostic.third === raceResult.podium[2].number;
         }).map(bet => bet.gambler);
 
     }
@@ -34,7 +38,8 @@ describe('SnailBetUsecase', () => {
 
         const resultProvider = new FakeSnailRaceProvider()
         resultProvider.addRaceResult(snailRaceResult);
-        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository());
+
+        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository(), resultProvider);
         await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
 
         // when
@@ -51,7 +56,10 @@ describe('SnailBetUsecase', () => {
             new Snail(2, 'Flash'),
             new Snail(3, 'Speedy')
         ]);
-        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository());
+        const resultProvider = new FakeSnailRaceProvider()
+        resultProvider.addRaceResult(snailRaceResult);
+
+        const snailBetUsecase = new SnailBetUsecase(new InMemoryBetRepository(), resultProvider);
         await snailBetUsecase.register('Frank', new PodiumPronostic(3, 2, 1));
         await snailBetUsecase.register('Bob', new PodiumPronostic(1, 3, 2));
         await snailBetUsecase.register('Charlie', new PodiumPronostic(2, 1, 3));
