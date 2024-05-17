@@ -13,7 +13,7 @@
 
 Run the docker hub image 
 ```shell
-   docker run --rm -d -p8000:8000 --name snail-race-server mathieucans/snail-race-server:1.0
+   docker run --rm -d -p8000:8000 --name snail-race-server mathieucans/snail-race-server:latest
 ```
 
 Verify the race server status
