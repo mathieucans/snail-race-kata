@@ -39,10 +39,13 @@ Verify the race server status
    3. Execute the same test for both MongoDbBetRepository and InMemoryBetRepository
    4. Implement the InMemoryBetRepository to pass it tests
 2. Contract test a readonly provider
-   1. Use test to implement a ServerSnailRaceProvider based on the real server
-   2. Use the same tests to implement a InMemorySnailRaceProvider 
+   1. Use test to implement the SnailRacesArena interface based on the real server
+   2. Use the same tests to implement a FakeSnailRacesArena that have same behaviour
 3. Use simulators to write application test following the business rules
    1. The application can register bet
+      * registering a bet is done by providing
+         * gambler name
+         * [snail1, snail2, snail3] where snail1 is the number of snail expected to win, snail2 is the second and snail3 is the third
    2. The application lists the winners according to last race ran. To win a bet :
       1. The podium match exactly the race result
       2. The bet has been registered at least 3 seconds before the race timestamp
