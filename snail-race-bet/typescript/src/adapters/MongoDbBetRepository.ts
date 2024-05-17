@@ -1,6 +1,5 @@
 import {Db} from "mongodb";
-import {BetRepository} from "../domain/BetRepository";
-import { Bet } from "../domain/Bet";
+import {Bet, BetRepository} from "../domain/BetRepository";
 
 export class MongoDbBetRepository implements BetRepository {
     constructor(private db: Db) {
