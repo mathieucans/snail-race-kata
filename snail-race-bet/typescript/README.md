@@ -50,3 +50,7 @@ Verify the race server status
       1. The podium match exactly the race result
       2. The bet has been registered at least 3 seconds before the race timestamp
       3. A bet is valid only for the next race
+
+# Application diagram
+
+![img.png](SnailRaceBetApplication.png)
