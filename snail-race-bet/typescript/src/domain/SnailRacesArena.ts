@@ -15,7 +15,7 @@ export class Podium {
     }
 }
 
-export class SnailRaceArena {
+export class SnailRace {
     constructor(
         public readonly raceId:number,
         public readonly timestamp:number,
@@ -25,8 +25,8 @@ export class SnailRaceArena {
 
 }
 
-class SnailRaces {
-    constructor(public readonly races:Array<SnailRacesArena>) {
+export class SnailRaces {
+    constructor(public readonly races:Array<SnailRace>) {
     }
 }
 
