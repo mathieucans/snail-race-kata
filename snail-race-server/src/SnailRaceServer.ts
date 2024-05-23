@@ -27,5 +27,9 @@ export class SnailRaceServer {
         if ((now - this._races[0].timestamp > 5 * MINUTES)) {
             this._races.unshift(new RandomSnailRace().generateNewRaceResult(now))
         }
+
+        if( this._races.length > 100) {
+            this._races.pop()
+        }
     }
 }
