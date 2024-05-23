@@ -1,6 +1,6 @@
 {
   "name": "snail-race-server",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Server that simulate snail races results",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,10 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "test": "jest",
-    "package": "docker build -t snail-race-server:1.1 .",
-    "rename": "docker tag snail-race-server:1.1 mathieucans/snail-race-server:1.1",
-    "publish": "docker push mathieucans/snail-race-server:1.1",
-    "run-in-docker": "docker run --rm -d -p8000:8000 --name snail-race-server snail-race-server:1.1"
+    "package": "docker build -t snail-race-server:1.2 .",
+    "rename": "docker tag snail-race-server:1.2 mathieucans/snail-race-server:1.2",
+    "publish": "docker push mathieucans/snail-race-server:1.2",
+    "run-in-docker": "docker run --rm -d -p8000:8000 --name snail-race-server snail-race-server:1.2"
   },
   "author": "",
   "license": "MIT",
