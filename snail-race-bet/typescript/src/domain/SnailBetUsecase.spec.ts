@@ -25,7 +25,9 @@ describe('SnailBetUsecase', () => {
 
     it('should list the gamblers that find the exact podium', async () => {
         // given
-        await snailBetUsecase.register('Alice', new PodiumPronostic(1, 2, 3));
+        // registerBetWithingRange('Alice', new PodiumPronostic(1, 2, 3))
+        // registerResultWithinRange()
+        await snailBetUsecase. er('Alice', new PodiumPronostic(1, 2, 3));
 
         const snailRaceResult = new SnailRaceResult(1, now, [
             new Snail(1, 'Turbo'),

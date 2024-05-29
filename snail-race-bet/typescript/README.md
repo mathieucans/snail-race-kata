@@ -78,3 +78,15 @@ Step 2 :
 step 3 : 
  - L'implementation du Fake pose des problème avec les deux implémentations. Ca fait des choses un peu compliquée
  - Gestion du temps est compliqué
+ - on se perd un peu dans l'ajout du temps, 
+    - soit avoir un helper pour register un bet a un temps donné aiderait, 
+    - ou alors on fait tout dépendre du clock et on ajoute une fonction advance.
+    - ou bien avoir des helpers registerBetWithingRange etc
+ - Est-ce qu'on ressent le bénéfice des simulateurs?
+
+Intérêt des simulateurs:
+- gmail - on dépendait de la logique complexe de gmail
+- xxxx - on dépend de valeurs avec règles, ex 4g v 4G et qu'on l'a pas typé dans le contrat
+- xxxx - quand la configuration des simulateurs fait partie de l'api naturel de l'application
+- protection contre regressions sur les deps (tests de contrat)
+- 
