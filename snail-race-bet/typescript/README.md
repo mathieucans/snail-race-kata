@@ -28,12 +28,17 @@ Verify the race server status
    ```shell
    npm install
    ```
-4. Run test through your IDE or with the following command
+4. Check that requirements by run the following command
+    ```shell
+    npm run check-requirements
+    ``` 
+
+<img alt="img.png" src="requirement-checked.png" style="border: Solid 1px"/>
+
+5. Run test through your IDE or with the following command
     ```shell
     npm run test
     ``` 
-5. Check that MongoDbBetRepository fails
-
 # Domain elements
 
 The application is about bet on snail races 🐌🏁.

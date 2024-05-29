@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "check-requirements": "jest --runTestsByPath ./src/adapters/RequirementCheck.spec.ts"
   },
   "author": "",
   "license": "MIT",
