@@ -1,5 +1,5 @@
 import example from './example.json'
-import {Podium, Snail, SnailRace, SnailRaces} from "../domain/SnailRacesArena";
+import {SnailRace, SnailRaces} from "../domain/RaceResultProvider";
 
 interface SnailResponse {
     name: string
