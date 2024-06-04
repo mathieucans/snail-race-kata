@@ -1,4 +1,4 @@
-import {Podium, SnailRaces, SnailRacesArena} from "../domain/SnailRacesArena";
+import {Podium, SnailRaces, SnailRacesArena} from "./SnailRacesArena";
 
 export class FakeSnailRacesProvider implements SnailRacesArena {
     private snailRaces: SnailRaces;

@@ -1,5 +1,5 @@
-import {FakeSnailRacesProvider} from "../adapters/FakeSnailRacesProvider";
-import {FakeBetRepository} from "../adapters/FakeBetRepository";
+import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
+import {FakeBetRepository} from "./FakeBetRepository";
 import {Bet, PodiumPronostic} from "./BetRepository";
 import {Podium, Snail} from "./SnailRacesArena";
 import {Winners} from "./Winners";
