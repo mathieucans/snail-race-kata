@@ -22,7 +22,7 @@ describe('MongoDbBetRepository', () => {
         expect(true).toEqual(false);
     })
 
-    test('bets outside range are not retrieved', async () => {
+    test('retrieve only bets inside the time range', async () => {
         expect(true).toEqual(false);
     })
 })
