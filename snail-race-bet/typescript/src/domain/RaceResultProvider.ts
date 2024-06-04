@@ -28,6 +28,10 @@ export class SnailRace {
 export class SnailRaces {
     constructor(public readonly races:Array<SnailRace>) {
     }
+
+    static withAdditionalResult(snailRaces: SnailRaces, raceId: number, datetime: number, podium: Podium) {
+        return new SnailRaces([...snailRaces.races, new SnailRace(raceId, datetime, podium)]);
+    }
 }
 
 export interface RaceResultProvider {
