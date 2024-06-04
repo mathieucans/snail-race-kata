@@ -72,6 +72,14 @@ The application has two external dependencies :
       1. The podium match exactly the race result
       2. The bet has been registered at least 3 seconds before the race timestamp
       3. A bet is valid only for the next race
+   3. Advice on how to concieve the tests:
+       1. Create some object/class (TestableApplication), taking all the adapters for instantiation.
+       2. The Api of this class or object should be something like
+           * registerBet()
+           * simulateRaceResult() // this is the only test specific method
+           * getWinners()
+       3. This object should delegate as much as possible to non test specific code, for instance it could create and call usecases or services
+       4. Make the tests use this object as it's *System Under Test* (SUT)
 
 # Application diagram
 
