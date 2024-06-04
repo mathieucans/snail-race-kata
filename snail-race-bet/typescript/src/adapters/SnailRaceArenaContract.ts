@@ -1,7 +1,7 @@
 import {SnailRace, SnailRaces, RaceResultProvider} from "../domain/RaceResultProvider";
 
 function sortByTimestamp(a: SnailRace, b: SnailRace) {
-    return a.timestamp - b.timestamp
+    return b.timestamp - a.timestamp
 }
 
 export function snailRaceArenaContract(serverSnailRaceArena: RaceResultProvider) {
@@ -16,7 +16,9 @@ export function snailRaceArenaContract(serverSnailRaceArena: RaceResultProvider)
 
         const races = await serverSnailRaceArena.races()
 
-        expect(races.races).toEqual(races.races.sort(sortByTimestamp))
+
+        const sortedRaces = new Array(...races.races).sort(sortByTimestamp);
+        expect(races.races).toEqual(sortedRaces)
     });
 
     test('all podium snails are different', async () => {
