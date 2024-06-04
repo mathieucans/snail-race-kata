@@ -24,10 +24,17 @@ function sortByDuration(a : SnailResponse, b : SnailResponse) {
 }
 
 function parseResponse(jsonresponse: RacesResponse) {
-    return new SnailRaces(jsonresponse.races.map(race =>
-    new SnailRace(race.raceId,
-        race.snails.sort(sortByDuration),
-        race.timestamp)
+    return new SnailRaces(jsonresponse.races.map(race => {
+        const snailRaceOrder = race.snails.sort(sortByDuration);
+        return new SnailRace(race.raceId,
+                race.timestamp,
+            new Podium(
+                new Snail(snailRaceOrder[0].number, snailRaceOrder[0].name),
+                new Snail(snailRaceOrder[1].number, snailRaceOrder[1].name),
+                new Snail(snailRaceOrder[2].number, snailRaceOrder[2].name),
+                )
+        );
+        }
     ));
 }
 
