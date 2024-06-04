@@ -1,6 +1,11 @@
 import {SnailRacesArenaHttp} from "./SnailRacesArenaHttp";
+import {snailRacesContractTest} from "./SnailRacesContractTest";
+
 
 describe('SnaleRacesArenaHttp', () => {
+    function getProvider() {
+        return new SnailRacesArenaHttp();
+    }
     it('should provide races somehow', async () => {
         const response = await fetch('http://localhost:8000/results');
         expect(response.status).toEqual(200);
@@ -12,10 +17,5 @@ describe('SnaleRacesArenaHttp', () => {
         expect(lastRace.snails.length).toBeGreaterThan(6)
         expect(lastRace).toHaveProperty('timestamp')
     });
-    it('should should provide the domain type', async () => {
-        const provider = new SnailRacesArenaHttp();
-        const result = await provider.races()
-        expect(result.races.length).toBeGreaterThan(10)
-
-    });
+    snailRacesContractTest(getProvider);
 });
