@@ -13,4 +13,10 @@ describe('FakeSnailRacesProvider', () => {
 
     });
     snailRacesContractTest(() => fakeSnailRacesProvider);
+
+    it('should allow for simulation even after instantiation', async () => {
+        fakeSnailRacesProvider.simulateRaceResult(3, Date.parse('2021-01-02'), new Podium(new Snail(10, 'The winner'), new Snail(11, 'The loser'), new Snail(12, 'The cheater')));
+        let races = await fakeSnailRacesProvider.races();
+        expect(races.races).toHaveLength(3)
+    });
 });
