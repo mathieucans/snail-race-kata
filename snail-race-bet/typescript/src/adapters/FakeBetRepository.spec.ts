@@ -1,17 +1,6 @@
 import {betRepositoryContactTest} from "./BetRepositoryContactTest";
-import {Bet, BetRepository} from "../domain/BetRepository";
-
-class FakeBetRepositorySpec implements BetRepository{
-    private bets: Bet[] = [];
-    async findByDateRange(from: number, to: number): Promise<Array<Bet>> {
-        return this.bets.filter(bet => bet.timestamp >= from && bet.timestamp < to);
-    }
-
-    async register(bet: Bet): Promise<void> {
-        this.bets.push(bet);
-    }
-}
+import {FakeBetRepository} from "./FakeBetRepository";
 
 describe('FakeBetRepository', () => {
-    betRepositoryContactTest(() => new FakeBetRepositorySpec());
+    betRepositoryContactTest(() => new FakeBetRepository());
 });
