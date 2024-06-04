@@ -1,54 +1,10 @@
 import {FakeSnailRacesProvider} from "../adapters/FakeSnailRacesProvider";
 import {FakeBetRepository} from "../adapters/FakeBetRepository";
-import {Bet, BetRepository, PodiumPronostic} from "./BetRepository";
-import {Podium, Snail, SnailRacesArena} from "./SnailRacesArena";
+import {Bet, PodiumPronostic} from "./BetRepository";
+import {Podium, Snail} from "./SnailRacesArena";
 import {Winners} from "./Winners";
+import {TestableApplication} from "./TestableApplication";
 
-
-class GetWinnersUsecease {
-    constructor(private betRepository: BetRepository, private snailRacesArena: SnailRacesArena) {
-
-    }
-
-    async getWinners(date: number) {
-        const bets = await this.betRepository.findByDateRange(0, date)
-
-        return new Winners(bets.map(bet => bet.gambler))
-    }
-}
-
-class PlaceBetUseCase {
-    constructor(private betRepository: BetRepository) {
-
-    }
-
-    async placeBet(bet: Bet) {
-        await this.betRepository.register(bet)
-    }
-}
-
-class TestableApplication {
-    private getWinnersUsecase: GetWinnersUsecease;
-    private placeBetUseCase: PlaceBetUseCase;
-    constructor(betRepository: BetRepository, private snailRacesArena: FakeSnailRacesProvider) {
-        this.getWinnersUsecase = new GetWinnersUsecease(betRepository, snailRacesArena)
-        this.placeBetUseCase = new PlaceBetUseCase(betRepository)
-
-    }
-
-    async getWinners(date: number) {
-        return await this.getWinnersUsecase.getWinners(date)
-    }
-
-    async placeBet(bet: Bet) {
-        await this.placeBetUseCase.placeBet(bet)
-    }
-
-    simulateRaceResult(datetime: number, podium: Podium) {
-        this.snailRacesArena.simulateRaceResult(datetime, podium)
-
-    }
-}
 
 describe('Gamble', () => {
     it('should not when no Bet is placed', async () => {
