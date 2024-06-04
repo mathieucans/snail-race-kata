@@ -1,7 +1,7 @@
 import {GetWinnersUsecease} from "./GetWinnersUsecease";
 import {PlaceBetUseCase} from "./PlaceBetUseCase";
 import {Bet, BetRepository} from "./BetRepository";
-import {FakeSnailRacesProvider} from "../adapters/FakeSnailRacesProvider";
+import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
 import {Podium} from "./SnailRacesArena";
 
 export class TestableApplication {

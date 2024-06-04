@@ -1,4 +1,4 @@
-import {Bet, BetRepository} from "../domain/BetRepository";
+import {Bet, BetRepository} from "./BetRepository";
 
 export class FakeBetRepository implements BetRepository {
     private bets: Bet[] = [];
