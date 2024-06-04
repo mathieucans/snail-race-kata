@@ -1,5 +1,5 @@
 import {snailRacesContractTest} from "./SnailRacesContractTest";
-import {Podium, Snail, SnailRace, SnailRaces} from "../domain/SnailRacesArena";
+import {Podium, Snail, SnailRace, SnailRaces} from "./SnailRacesArena";
 import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
 
 describe('FakeSnailRacesProvider', () => {

@@ -1,6 +1,6 @@
 import {MongoClient} from "mongodb";
 import {MongoDbBetRepository} from "./MongoDbBetRepository";
-import {betRepositoryContactTest} from "./BetRepositoryContactTest";
+import {betRepositoryContactTest} from "../domain/BetRepositoryContactTest";
 
 describe('MongoDbBetRepository', () => {
     let mongoClient: MongoClient;
