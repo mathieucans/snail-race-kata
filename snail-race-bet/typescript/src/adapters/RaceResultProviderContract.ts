@@ -19,7 +19,7 @@ export function raceResultProviderContract(serverSnailRaceArena: RaceResultProvi
         expect(races.races).toEqual(sortedRaces)
     });
 
-    test('all podium snails are different', async () => {
+    test('a snail cannot be at different podium place', async () => {
 
         const races = await serverSnailRaceArena.races()
 
