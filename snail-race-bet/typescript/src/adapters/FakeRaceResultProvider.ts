@@ -1,7 +1,8 @@
-import {snailRaceArenaContract} from "./SnailRaceArenaContract";
-import {Podium, Snail, SnailRace, SnailRaces, SnailRacesArena} from "../domain/SnailRacesArena";
+import {raceResultProviderContract} from "./RaceResultProviderContract";
+import {Podium, Snail, SnailRace, SnailRaces, RaceResultProvider} from "../domain/RaceResultProvider";
+import {sortFromMoreRecentToLessRecent} from "./SortFromMoreRecentToLessRecent";
 
-class FakeSnailRaceArena implements SnailRacesArena {
+class FakeRaceResultProvider implements RaceResultProvider {
     private _races:SnailRace[] = [];
 
     async races(): Promise<SnailRaces> {
@@ -20,15 +21,16 @@ class FakeSnailRaceArena implements SnailRacesArena {
                 new Snail(13, "Bobby"),
             ));
         this._races.push(race)
+        this._races.sort(sortFromMoreRecentToLessRecent)
     }
 }
 
 describe('FakeSnailRacesArena', () => {
-    const fakeSnailRaceArena = new FakeSnailRaceArena()
+    const fakeSnailRaceArena = new FakeRaceResultProvider()
 
     fakeSnailRaceArena.newRaceRecorded();
     fakeSnailRaceArena.newRaceRecorded();
 
 
-    snailRaceArenaContract(fakeSnailRaceArena)
+    raceResultProviderContract(fakeSnailRaceArena)
 });
