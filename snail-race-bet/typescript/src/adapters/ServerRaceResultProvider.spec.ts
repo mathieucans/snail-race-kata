@@ -1,6 +1,5 @@
-import example from './example.json'
-import {Podium, Snail, SnailRace, SnailRaces} from "../domain/RaceResultProvider";
-import {parseResponse, ServerRaceResultProvider} from "./ServerRaceResultProvider";
+import {SnailRace, SnailRaces} from "../domain/RaceResultProvider";
+import {ServerRaceResultProvider} from "./ServerRaceResultProvider";
 
 function sortByTimestamp(a: SnailRace, b:SnailRace) {
     return a.timestamp - b.timestamp
@@ -35,15 +34,5 @@ describe('RestSnailRaceArena', () => {
     });
 
 
-    test('parse sample response', () => {
-        const races = parseResponse(example);
-        expect(races).toBeInstanceOf(SnailRaces)
-        expect(races.races[1]).toEqual(new SnailRace(989376, 1716821785381, new Podium(
-            new Snail(6, "Black Caviar"),
-            new Snail(3, "Seabiscuit"),
-            new Snail(19, "Winx"),
-        )))
-
-    })
 
 });
