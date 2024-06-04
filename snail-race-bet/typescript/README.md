@@ -73,7 +73,7 @@ The application has two external dependencies :
       2. The bet has been registered at least 3 seconds before the race timestamp
       3. A bet is valid only for the next race
    3. Advice on how to concieve the tests:
-      1. Create some object/class (TestableApplication), taking all the adapters for instantiation. that has the following api
+      1. Create some object/class (TestableApplication), taking all the adapters for instantiation.
       2. The Api of this class or object should be something like
           * registerBet()
           * simulateRaceResult() // this is the only test specific method
