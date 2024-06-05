@@ -1,5 +1,5 @@
-import {MongoDbBetRepository} from "./MongoDbBetRepository";
-import {Bet, BetRepository, PodiumPronostic} from "../domain/BetRepository";
+import {MongoDbBetRepository} from "../adapters/MongoDbBetRepository";
+import {Bet, BetRepository, PodiumPronostic} from "./BetRepository";
 
 export function betRepositoryContactTest(repoProvider: () => BetRepository) {
     test('register a bets', async () => {

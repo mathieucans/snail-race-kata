@@ -1,5 +1,5 @@
 import {betRepositoryContactTest} from "./BetRepositoryContactTest";
-import {FakeBetRepository} from "../domain/FakeBetRepository";
+import {FakeBetRepository} from "./FakeBetRepository";
 
 describe('FakeBetRepository', () => {
     betRepositoryContactTest(() => new FakeBetRepository());

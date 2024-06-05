@@ -1,5 +1,5 @@
 import {RaceResultProviderHttp} from "./RaceResultProviderHttp";
-import {RaceResultProviderContractTest} from "./RaceResultProviderContractTest";
+import {RaceResultProviderContractTest} from "../domain/RaceResultProviderContractTest";
 
 
 describe('RaceResultProviderHttp', () => {

@@ -1,4 +1,4 @@
-import {RaceResultProviderHttp} from "./RaceResultProviderHttp";
+import {RaceResultProviderHttp} from "../adapters/RaceResultProviderHttp";
 
 export function RaceResultProviderContractTest(getProvider: () => RaceResultProviderHttp) {
     it('should should provide the domain type', async () => {
