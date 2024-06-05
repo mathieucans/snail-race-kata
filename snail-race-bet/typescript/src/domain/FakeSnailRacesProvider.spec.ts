@@ -1,4 +1,4 @@
-import {snailRacesContractTest} from "./SnailRacesContractTest";
+import {snailRacesContract} from "./SnailRacesContract";
 import {Podium, Snail, SnailRace, SnailRaces} from "./SnailRacesArena";
 import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
 
@@ -12,7 +12,7 @@ describe('FakeSnailRacesProvider', () => {
         fakeSnailRacesProvider = new FakeSnailRacesProvider(snailRaces);
 
     });
-    snailRacesContractTest(() => fakeSnailRacesProvider);
+    snailRacesContract(() => fakeSnailRacesProvider);
 
     it('should allow for simulation even after instantiation', async () => {
         fakeSnailRacesProvider.simulateRaceResult(3, Date.parse('2021-01-02'), new Podium(new Snail(10, 'The winner'), new Snail(11, 'The loser'), new Snail(12, 'The cheater')));

@@ -1,5 +1,5 @@
 import {SnailRacesArenaHttp} from "./SnailRacesArenaHttp";
-import {snailRacesContractTest} from "../domain/SnailRacesContractTest";
+import {snailRacesContract} from "../domain/SnailRacesContract";
 
 
 describe('SnaleRacesArenaHttp', () => {
@@ -17,5 +17,5 @@ describe('SnaleRacesArenaHttp', () => {
         expect(lastRace.snails.length).toBeGreaterThan(6)
         expect(lastRace).toHaveProperty('timestamp')
     });
-    snailRacesContractTest(getProvider);
+    snailRacesContract(getProvider);
 });

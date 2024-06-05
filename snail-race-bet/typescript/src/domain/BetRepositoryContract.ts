@@ -1,6 +1,6 @@
 import {Bet, BetRepository, PodiumPronostic} from "./BetRepository";
 
-export function betRepositoryContactTest(repoProvider: () => BetRepository) {
+export function betRepositoryContract(repoProvider: () => BetRepository) {
     test('register a bets', async () => {
         const repository = repoProvider();
         await repository.register(new Bet("me", new PodiumPronostic(2, 4, 6), Date.parse("2021-01-01T00:00:00Z")));
