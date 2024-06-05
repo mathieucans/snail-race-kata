@@ -1,20 +1,20 @@
-import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
+import {FakeRaceResultProvider} from "./FakeRaceResultProvider";
 import {FakeBetRepository} from "./FakeBetRepository";
 import {Bet, PodiumPronostic} from "./BetRepository";
-import {Podium, Snail} from "./SnailRacesArena";
+import {Podium, Snail} from "./RaceResultProvider";
 import {Winners} from "./Winners";
 import {TestableApplication} from "./TestableApplication";
 
 
 describe('Gamble', () => {
     it('should not when no Bet is placed', async () => {
-        const app = new TestableApplication(new FakeBetRepository(), new FakeSnailRacesProvider())
+        const app = new TestableApplication(new FakeBetRepository(), new FakeRaceResultProvider())
         const result = await app.getWinners(Date.parse("2021-01-01T00:00:00Z"))
         expect(result).toEqual(new Winners([]))
     });
 
     it('should win when the podium exactly matches the bet', async () => {
-        const app = new TestableApplication(new FakeBetRepository(), new FakeSnailRacesProvider())
+        const app = new TestableApplication(new FakeBetRepository(), new FakeRaceResultProvider())
 
         let podium = new Podium(new Snail(1, 'Turbo'), new Snail(2, 'Flash'), new Snail(3, 'Speedy'));
         let betTime = Date.parse("2021-01-01T00:00:00Z");

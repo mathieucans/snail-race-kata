@@ -1,15 +1,15 @@
-import {GetWinnersUsecease} from "./GetWinnersUsecease";
+import {GetWinnersUseCase} from "./GetWinnersUseCase";
 import {PlaceBetUseCase} from "./PlaceBetUseCase";
 import {Bet, BetRepository} from "./BetRepository";
-import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
-import {Podium} from "./SnailRacesArena";
+import {FakeRaceResultProvider} from "./FakeRaceResultProvider";
+import {Podium} from "./RaceResultProvider";
 
 export class TestableApplication {
-    private getWinnersUsecase: GetWinnersUsecease;
+    private getWinnersUsecase: GetWinnersUseCase;
     private placeBetUseCase: PlaceBetUseCase;
 
-    constructor(betRepository: BetRepository, private snailRacesArena: FakeSnailRacesProvider) {
-        this.getWinnersUsecase = new GetWinnersUsecease(betRepository, snailRacesArena)
+    constructor(betRepository: BetRepository, private raceResultProvider: FakeRaceResultProvider) {
+        this.getWinnersUsecase = new GetWinnersUseCase(betRepository, raceResultProvider)
         this.placeBetUseCase = new PlaceBetUseCase(betRepository)
 
     }
@@ -23,7 +23,7 @@ export class TestableApplication {
     }
 
     simulateRaceResult(datetime: number, podium: Podium) {
-        this.snailRacesArena.simulateRaceResult(datetime, podium)
+        this.raceResultProvider.simulateRaceResult(datetime, podium)
 
     }
 }

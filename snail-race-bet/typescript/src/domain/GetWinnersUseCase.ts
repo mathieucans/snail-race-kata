@@ -1,9 +1,9 @@
 import {BetRepository} from "./BetRepository";
-import {SnailRacesArena} from "./SnailRacesArena";
+import {RaceResultProvider} from "./RaceResultProvider";
 import {Winners} from "./Winners";
 
-export class GetWinnersUsecease {
-    constructor(private betRepository: BetRepository, private snailRacesArena: SnailRacesArena) {
+export class GetWinnersUseCase {
+    constructor(private betRepository: BetRepository, private raceResultProvider: RaceResultProvider) {
 
     }
 

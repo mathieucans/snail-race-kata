@@ -1,10 +1,10 @@
-import {SnailRacesArenaHttp} from "./SnailRacesArenaHttp";
-import {snailRacesContractTest} from "./SnailRacesContractTest";
+import {RaceResultProviderHttp} from "./RaceResultProviderHttp";
+import {RaceResultProviderContractTest} from "./RaceResultProviderContractTest";
 
 
-describe('SnaleRacesArenaHttp', () => {
+describe('RaceResultProviderHttp', () => {
     function getProvider() {
-        return new SnailRacesArenaHttp();
+        return new RaceResultProviderHttp();
     }
     it('should provide races somehow', async () => {
         const response = await fetch('http://localhost:8000/results');
@@ -17,5 +17,5 @@ describe('SnaleRacesArenaHttp', () => {
         expect(lastRace.snails.length).toBeGreaterThan(6)
         expect(lastRace).toHaveProperty('timestamp')
     });
-    snailRacesContractTest(getProvider);
+    RaceResultProviderContractTest(getProvider);
 });
