@@ -1,6 +1,6 @@
 import {MongoClient} from "mongodb";
 import {MongoDbBetRepository} from "./MongoDbBetRepository";
-import {betRepositoryContactTest} from "../domain/BetRepositoryContactTest";
+import {betRepositoryContract} from "../domain/BetRepositoryContract";
 
 describe('MongoDbBetRepository', () => {
     let mongoClient: MongoClient;
@@ -18,5 +18,5 @@ describe('MongoDbBetRepository', () => {
     afterEach(() => {
         mongoClient.close()
     })
-    betRepositoryContactTest(() => repository);
+    betRepositoryContract(() => repository);
 })

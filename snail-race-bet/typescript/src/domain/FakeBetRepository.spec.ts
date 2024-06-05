@@ -1,6 +1,6 @@
-import {betRepositoryContactTest} from "./BetRepositoryContactTest";
+import {betRepositoryContract} from "./BetRepositoryContract";
 import {FakeBetRepository} from "./FakeBetRepository";
 
 describe('FakeBetRepository', () => {
-    betRepositoryContactTest(() => new FakeBetRepository());
+    betRepositoryContract(() => new FakeBetRepository());
 });
