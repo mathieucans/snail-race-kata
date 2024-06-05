@@ -16,8 +16,8 @@ export class Application {
         await this.placeBetUseCase.placeBet(new Bet(gambler, new PodiumPronostic(first, second, third), timestamp))
     }
 
-    async getWinners(date: number) {
-        return await this.getWinnersUseCase.getWinners(date)
+    async getWinners() {
+        return await this.getWinnersUseCase.getWinners()
     }
 
 

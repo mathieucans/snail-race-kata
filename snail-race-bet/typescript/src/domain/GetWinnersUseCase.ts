@@ -16,19 +16,23 @@ export class GetWinnersUseCase {
 
     }
 
-    async getWinners(date: number) {
-        const bets = await this.betRepository.findByDateRange(0, date)
+    async getWinners() {
         const results = await this.raceResultProvider.races();
-
         if(results.races.length ===0 ){
             return noWinner;
         }
+        let validBetDateRangeFrom = 0
+        if (results.races.length > 1){
+            validBetDateRangeFrom = results.races[1].timestamp;
+        }
         const lastRace = results.races[0];
-        const lastRacePodium = lastRace.podium;
+
+        const bets = await this.betRepository.findByDateRange(
+            validBetDateRangeFrom,
+            lastRace.timestamp - threeSeconds)
 
         return new Winners(bets
-            .filter(bet => bet.timestamp <= lastRace.timestamp - threeSeconds)
-            .filter(bet => matchExactly(bet.pronostic, lastRacePodium))
+            .filter(bet => matchExactly(bet.pronostic, lastRace.podium))
             .map(bet => bet.gambler))
     }
 }

@@ -25,8 +25,15 @@ export class SnailRace {
 
 }
 
+function sortFromMoreToLessRecent(a: SnailRace, b:SnailRace) {
+    return b.timestamp - a.timestamp
+}
+
 export class SnailRaces {
-    constructor(public readonly races:Array<SnailRace>) {
+    public readonly races: SnailRace[];
+
+    constructor(races:Array<SnailRace>) {
+        this.races = new Array(...races).sort(sortFromMoreToLessRecent)
     }
 
     static withPodium(snailRaces: SnailRaces, datetime: number, podium: Podium) {
