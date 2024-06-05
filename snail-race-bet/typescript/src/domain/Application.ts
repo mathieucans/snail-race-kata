@@ -10,7 +10,7 @@ export class Application {
 
     }
 
-    async getWinners() {
+    async getWinners(date: number) {
         return undefined;
     }
 }
