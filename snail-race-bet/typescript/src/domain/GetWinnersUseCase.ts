@@ -9,7 +9,7 @@ function matchExactly(pronostic: PodiumPronostic, podium: Podium) : boolean {
 }
 
 const noWinner = new Winners([]);
-
+const threeSeconds = 3000
 
 export class GetWinnersUseCase {
     constructor(private betRepository: BetRepository, private raceResultProvider: RaceResultProvider) {
@@ -23,9 +23,11 @@ export class GetWinnersUseCase {
         if(results.races.length ===0 ){
             return noWinner;
         }
-        const lastRacePodium = results.races[0].podium;
+        const lastRace = results.races[0];
+        const lastRacePodium = lastRace.podium;
 
         return new Winners(bets
+            .filter(bet => bet.timestamp <= lastRace.timestamp - threeSeconds)
             .filter(bet => matchExactly(bet.pronostic, lastRacePodium))
             .map(bet => bet.gambler))
     }

@@ -41,6 +41,20 @@ describe('Gambler', () => {
         const result = await app.getWinners(fourMinutesLater)
 
         expect(result).toEqual(new Winners([]))
+    })
 
+    it(`should not win when the bet has been placed less than 3 seconds before the race date`, async () => {
+        const raceResultProvider = new FakeRaceResultProvider();
+        const app = new Application(new FakeBetRepository(), raceResultProvider)
+
+        let podium = new Podium(new Snail(1, 'Turbo'), new Snail(2, 'Flash'), new Snail(3, 'Speedy'));
+        let betTime = Date.parse("2021-01-01T00:00:00Z");
+
+        await app.placeBet("me",betTime, 1, 2, 3);
+        let twoSecondsLater = Date.parse("2021-01-01T00:00:02Z");
+        raceResultProvider.simulateRaceResult(twoSecondsLater, podium)
+        const result = await app.getWinners(twoSecondsLater)
+
+        expect(result).toEqual(new Winners([]))
     });
 });
