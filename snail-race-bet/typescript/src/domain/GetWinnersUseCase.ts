@@ -1,6 +1,6 @@
 import {BetRepository, PodiumPronostic} from "./BetRepository";
 import {Podium, RaceResultProvider} from "./RaceResultProvider";
-import {Winners} from "./Winners";
+import {noWinner, Winners} from "./Winners";
 
 function matchExactly(pronostic: PodiumPronostic, podium: Podium) : boolean {
     return pronostic.first === podium.first.number
@@ -8,7 +8,6 @@ function matchExactly(pronostic: PodiumPronostic, podium: Podium) : boolean {
         && pronostic.third === podium.third.number;
 }
 
-const noWinner = new Winners([]);
 const threeSeconds = 3000
 
 export class GetWinnersUseCase {
@@ -21,14 +20,14 @@ export class GetWinnersUseCase {
         if(results.races.length ===0 ){
             return noWinner;
         }
-        let validBetDateRangeFrom = 0
+        let validBetDateFrom = 0
         if (results.races.length > 1){
-            validBetDateRangeFrom = results.races[1].timestamp;
+            validBetDateFrom = results.races[1].timestamp;
         }
         const lastRace = results.races[0];
 
         const bets = await this.betRepository.findByDateRange(
-            validBetDateRangeFrom,
+            validBetDateFrom,
             lastRace.timestamp - threeSeconds)
 
         return new Winners(bets

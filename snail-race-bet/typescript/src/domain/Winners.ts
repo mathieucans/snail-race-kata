@@ -4,3 +4,5 @@ export class Winners {
     }
 
 }
+
+export const noWinner = new Winners([]);
