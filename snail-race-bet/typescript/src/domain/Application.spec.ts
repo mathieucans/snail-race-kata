@@ -1,11 +1,11 @@
-import {SnailRacesArena} from "./SnailRacesArena";
+import {RaceResultProvider} from "./RaceResultProvider";
 import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
 import {FakeBetRepository} from "./FakeBetRepository";
 import {Application} from "./Application";
 import {Winners} from "./Winners";
 
 describe('SnailGamblingApplication', () => {
-    let raceResultProvider: SnailRacesArena;
+    let raceResultProvider: RaceResultProvider;
     let app: Application;
 
     beforeEach(() => {

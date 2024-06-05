@@ -1,6 +1,6 @@
-import {Podium, SnailRaces, SnailRacesArena} from "./SnailRacesArena";
+import {Podium, SnailRaces, RaceResultProvider} from "./RaceResultProvider";
 
-export class FakeSnailRacesProvider implements SnailRacesArena {
+export class FakeSnailRacesProvider implements RaceResultProvider {
     private snailRaces: SnailRaces;
 
     constructor(snailRaces?: SnailRaces) {

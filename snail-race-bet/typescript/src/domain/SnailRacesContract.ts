@@ -1,6 +1,6 @@
-import {SnailRacesArena} from "./SnailRacesArena";
+import {RaceResultProvider} from "./RaceResultProvider";
 
-export function snailRacesContract(getProvider: () => SnailRacesArena) {
+export function snailRacesContract(getProvider: () => RaceResultProvider) {
     it('should should provide the domain type', async () => {
         const provider = getProvider();
         const result = await provider.races()

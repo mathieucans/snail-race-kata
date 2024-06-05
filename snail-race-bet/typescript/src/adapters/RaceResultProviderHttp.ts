@@ -1,4 +1,4 @@
-import {Podium, Snail, SnailRace, SnailRaces, SnailRacesArena} from "../domain/SnailRacesArena";
+import {Podium, Snail, SnailRace, SnailRaces, RaceResultProvider} from "../domain/RaceResultProvider";
 
 type RawSnail = {
     number: number;
@@ -29,7 +29,7 @@ function mapToDomain(data: RawRaces): SnailRaces {
     }
 }
 
-export class SnailRacesArenaHttp implements SnailRacesArena {
+export class RaceResultProviderHttp implements RaceResultProvider {
     async races(): Promise<SnailRaces> {
         const response = await fetch('http://localhost:8000/results');
         expect(response.status).toEqual(200);

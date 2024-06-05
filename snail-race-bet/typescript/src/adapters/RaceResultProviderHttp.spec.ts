@@ -1,10 +1,10 @@
-import {SnailRacesArenaHttp} from "./SnailRacesArenaHttp";
+import {RaceResultProviderHttp} from "./RaceResultProviderHttp";
 import {snailRacesContract} from "../domain/SnailRacesContract";
 
 
-describe('SnaleRacesArenaHttp', () => {
+describe('RaceResultProviderHttp', () => {
     function getProvider() {
-        return new SnailRacesArenaHttp();
+        return new RaceResultProviderHttp();
     }
     it('should provide races somehow', async () => {
         const response = await fetch('http://localhost:8000/results');
