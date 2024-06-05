@@ -14,7 +14,7 @@ describe('SnailGamblingApplication', () => {
 
     });
     it('no winners when no Bet is placed', async () => {
-        expect(await app.getWinners()).toEqual(new Winners([]));
+        expect(await app.getWinners(Date.now())).toEqual(new Winners([]));
     });
 
     it('win when the podium exactly matches the bet', () => {
