@@ -30,6 +30,6 @@ export class SnailRaces {
     }
 }
 
-export interface SnailRacesArena {
+export interface RaceResultProvider {
     races(): Promise<SnailRaces>
 }
