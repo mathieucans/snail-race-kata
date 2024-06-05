@@ -46,7 +46,7 @@ The application is about bet on snail races 🐌🏁.
 The application can register bet and determine winners.
 The application has two external dependencies : 
    - a repository where store and retrieves bets
-   - a snail race arena that provide races results
+   - a race result provider 
 
 # Instructions
 
@@ -60,8 +60,8 @@ The application has two external dependencies :
       2. Implement the InMemoryBetRepository to pass it tests 
 
 ## Step 2: Contract test a readonly dependency
-   1. Use test to implement the SnailRacesArena interface based on the real server
-   2. Use the same tests to implement a FakeSnailRacesArena that have same behaviour
+   1. Use test to implement the RaceResultProvider interface based on the real server
+   2. Use the same tests to implement a FakeRaceResultProvider that have same behaviour
 
 ## Step 3: Use simulators to write application test following the business rules
 

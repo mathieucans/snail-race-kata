@@ -9,7 +9,7 @@ describe('Requirements check', () => {
         await mongoClient.close()
     });
 
-    test('snail race arena is accessible', async () => {
+    test('race result server is accessible', async () => {
         const response = await fetch('http://localhost:8000/results');
 
         expect(response.status).toEqual(200)
