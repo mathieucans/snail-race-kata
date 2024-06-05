@@ -6,6 +6,7 @@ describe('RaceResultProviderHttp', () => {
     function getProvider() {
         return new RaceResultProviderHttp();
     }
+
     it('should provide races somehow', async () => {
         const response = await fetch('http://localhost:8000/results');
         expect(response.status).toEqual(200);
