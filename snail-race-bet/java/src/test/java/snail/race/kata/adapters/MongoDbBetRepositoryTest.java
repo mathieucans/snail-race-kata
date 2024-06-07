@@ -1,5 +1,6 @@
 package snail.race.kata.adapters;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -10,9 +11,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
+import snail.race.kata.domain.PodiumPronostic;
+
+import java.time.Instant;
+import java.util.List;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -40,11 +45,21 @@ public class MongoDbBetRepositoryTest {
 
     @Test
     void register_a_bets() {
-        assertThat(true).isFalse();
+        var bet = new Bet("1", new PodiumPronostic(1, 2, 3), 42);
+
+        repository.register(bet);
+
+        List<Bet> byDateRange = repository.findByDateRange(0, 100);
+        assertThat(byDateRange).containsExactly(bet);
     }
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        assertThat(true).isFalse();
+        var bet = new Bet("1", new PodiumPronostic(1, 2, 3), 42000);
+
+        repository.register(bet);
+
+        List<Bet> byDateRange = repository.findByDateRange(0, 100);
+        assertThat(byDateRange).isEmpty();
     }
 }
