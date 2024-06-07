@@ -1,15 +1,9 @@
-package snail.race.kata.adapters;
-
-import snail.race.kata.domain.Bet;
-import snail.race.kata.domain.BetRepository;
+package snail.race.kata.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedTransferQueue;
 
-import static java.util.stream.Collectors.toList;
-
-public class InMemoryBetRepository implements BetRepository {
+public class FakeBetRepository implements BetRepository {
     private List<Bet> inMemoryBets = new ArrayList<>();
 
     @Override
