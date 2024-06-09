@@ -5,7 +5,7 @@ import {Application} from "./Application";
 import {Winners} from "./Winners";
 
 describe('SnailGamblingApplication', () => {
-    let raceResultProvider: RaceResultProvider;
+    let raceResultProvider: FakeSnailRacesProvider;
     let app: Application;
 
     beforeEach(() => {
