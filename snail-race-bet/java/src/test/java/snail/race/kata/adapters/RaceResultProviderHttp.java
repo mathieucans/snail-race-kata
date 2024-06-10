@@ -13,7 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RaceResultProviderHttp {
-    public Races invokeResultEndpoint() throws IOException, InterruptedException {
+    Races invokeResultEndpoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/"))
                 .build();
@@ -36,7 +36,7 @@ class RaceResultProviderHttp {
         return null;
     }
 
-    public static class Race {
+    static class Race {
         public int raceId;
         public long timestamp;
         public List<Snail> snails;
@@ -44,7 +44,7 @@ class RaceResultProviderHttp {
         // getters and setters
     }
 
-    public static class Snail {
+    static class Snail {
         public int number;
         public String name;
         public double duration;
@@ -52,7 +52,7 @@ class RaceResultProviderHttp {
         // getters and setters
     }
 
-    public static class Races {
+    static class Races {
 
          public List<Race> races;
 

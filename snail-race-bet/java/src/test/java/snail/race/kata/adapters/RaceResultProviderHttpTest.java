@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RaceResultProviderHttpTest {
 
-
     @Test
     void should_provide_something() throws IOException, InterruptedException {
         RaceResultProviderHttp.Races result = new RaceResultProviderHttp().invokeResultEndpoint();
