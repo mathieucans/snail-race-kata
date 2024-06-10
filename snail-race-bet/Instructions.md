@@ -15,12 +15,12 @@ The application has two external dependencies :
 ## Step 1: Contract test a read/write dependency
 
 1. contract test a database
-    1. Implement MongoDbBetRepository to pass it tests
-    2. Create a InMemoryBetRepository that implement the BetRepository.
+    1. Implement BetRepositoryMongoDb to pass it tests
+    2. Create a BetRepositoryFake that implement the BetRepository.
 2. use contract test to write in memory adapter
-    1. Execute the same test for both MongoDbBetRepository and InMemoryBetRepository 
+    1. Execute the same test for both BetRepositoryMongoDb and BetRepositoryFake 
         * [exapmple in](https://gist.github.com/martinsson/dda36b037908ced85cb11b3a866bacf2) TS 
-    2. Implement the InMemoryBetRepository to pass it tests
+    2. Implement the BetRepositoryFake to pass it tests
 
 ## Step 2: Contract test a readonly dependency
 1. Use test to implement the RaceResultProvider interface based on the real server
