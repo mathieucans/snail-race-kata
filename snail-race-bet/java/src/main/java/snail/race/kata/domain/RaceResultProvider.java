@@ -27,5 +27,12 @@ public interface RaceResultProvider {
             races.add(new SnailRace(raceId, datetime, podium));
             return new SnailRaces(races);
         }
+
+        public SnailRace getLastRace() {
+            // TODO make this actually get the last
+            if (races.isEmpty())
+                return null;
+            return races.get(0);
+        }
     }
 }

@@ -1,8 +1,7 @@
 package snail.race.kata.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class BetApplication {
     private final BetRepository betRepository;
@@ -26,9 +25,22 @@ public class BetApplication {
     }
 
     List<Winner> getWinnersForLastRace() {
-        if (betRepository.findByDateRange(0, Integer.MAX_VALUE).isEmpty()) {
-            return List.of();
-        }
-        return List.of(new Winner("me"));
+        List<Bet> bets = betRepository.findByDateRange(0, Integer.MAX_VALUE);
+        var races = raceResultProvider.races();
+        var winningBets = findExactMatchBets(bets, races.getLastRace());
+
+        return winningBets.map(bet -> new Winner(bet.gambler())).toList()   ;
+    }
+
+    private Stream<Bet> findExactMatchBets(List<Bet> bets, RaceResultProvider.SnailRace race) {
+        return bets.stream()
+                .filter(bet -> bet.isInTimeFor(race))
+                .filter(bet -> {
+                    RaceResultProvider.Podium podium = race.podium();
+                    return bet.pronostic().first() == podium.first().number() &&
+                            bet.pronostic().second() == podium.second().number() &&
+                            bet.pronostic().third() == podium.third().number();
+
+                });
     }
 }
