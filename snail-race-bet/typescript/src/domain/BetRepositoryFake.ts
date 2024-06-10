@@ -1,6 +1,6 @@
 import {Bet, BetRepository} from "./BetRepository";
 
-export class FakeBetRepository implements BetRepository {
+export class BetRepositoryFake implements BetRepository {
     private bets: Bet[] = [];
 
     async findByDateRange(from: number, to: number): Promise<Array<Bet>> {

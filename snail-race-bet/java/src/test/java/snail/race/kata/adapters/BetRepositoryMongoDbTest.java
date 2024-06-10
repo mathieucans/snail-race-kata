@@ -14,7 +14,7 @@ import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class MongoDbBetRepositoryTest extends AbstractBetRepositoryTest {
+public class BetRepositoryMongoDbTest extends AbstractBetRepositoryTest {
     MongoClient mongoClient;
 
     @BeforeEach
@@ -26,7 +26,7 @@ public class MongoDbBetRepositoryTest extends AbstractBetRepositoryTest {
 
         database.getCollection("bet", Bet.class).drop();
 
-        repository = new MongoDbBetRepository(database);
+        repository = new BetRepositoryMongoDb(database);
 
     }
 

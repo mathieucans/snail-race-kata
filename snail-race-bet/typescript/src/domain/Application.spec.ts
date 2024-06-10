@@ -1,6 +1,6 @@
 import {RaceResultProvider} from "./RaceResultProvider";
 import {FakeSnailRacesProvider} from "./FakeSnailRacesProvider";
-import {FakeBetRepository} from "./FakeBetRepository";
+import {BetRepositoryFake} from "./BetRepositoryFake";
 import {Application} from "./Application";
 import {Winners} from "./Winners";
 
@@ -10,7 +10,7 @@ describe('SnailGamblingApplication', () => {
 
     beforeEach(() => {
         raceResultProvider = new FakeSnailRacesProvider()
-        app = new Application(new FakeBetRepository(), raceResultProvider);
+        app = new Application(new BetRepositoryFake(), raceResultProvider);
 
     });
     it('no winners when no Bet is placed', async () => {

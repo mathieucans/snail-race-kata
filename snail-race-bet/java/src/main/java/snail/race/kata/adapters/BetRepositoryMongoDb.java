@@ -5,18 +5,14 @@ import org.bson.Document;
 import snail.race.kata.domain.Bet;
 import snail.race.kata.domain.BetRepository;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.stream.StreamSupport;
 
-public class MongoDbBetRepository implements BetRepository {
+public class BetRepositoryMongoDb implements BetRepository {
     private final MongoDatabase database;
 
-    public MongoDbBetRepository(MongoDatabase database) {
+    public BetRepositoryMongoDb(MongoDatabase database) {
 
         this.database = database;
     }
