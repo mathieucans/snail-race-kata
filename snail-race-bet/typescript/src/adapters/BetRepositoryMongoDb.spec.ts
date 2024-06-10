@@ -1,10 +1,10 @@
 import {MongoClient} from "mongodb";
-import {MongoDbBetRepository} from "./MongoDbBetRepository";
+import {BetRepositoryMongoDb} from "./BetRepositoryMongoDb";
 import {betRepositoryContactTest} from "../domain/BetRepositoryContactTest";
 
-describe('MongoDbBetRepository', () => {
+describe('BetRepositoryMongoDb', () => {
     let mongoClient: MongoClient;
-    let repository: MongoDbBetRepository;
+    let repository: BetRepositoryMongoDb;
 
     beforeEach(async () => {
         mongoClient = new MongoClient('mongodb://localhost:27017');
@@ -12,7 +12,7 @@ describe('MongoDbBetRepository', () => {
         const db = mongoClient.db('contract_testing');
         await db.collection("bets").drop();
 
-        repository = new MongoDbBetRepository(db);
+        repository = new BetRepositoryMongoDb(db);
     })
 
     afterEach(() => {

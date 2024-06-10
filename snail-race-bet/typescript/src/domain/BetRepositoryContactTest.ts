@@ -1,4 +1,4 @@
-import {MongoDbBetRepository} from "../adapters/MongoDbBetRepository";
+import {BetRepositoryMongoDb} from "../adapters/BetRepositoryMongoDb";
 import {Bet, BetRepository, PodiumPronostic} from "./BetRepository";
 
 export function betRepositoryContactTest(repoProvider: () => BetRepository) {

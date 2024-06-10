@@ -1,6 +1,6 @@
 import {Application} from "./Application";
 import {FakeRaceResultProvider} from "./FakeRaceResultProvider";
-import {FakeBetRepository} from "./FakeBetRepository";
+import {BetRepositoryFake} from "./BetRepositoryFake";
 import {Podium} from "./RaceResultProvider";
 
 export class TestableApplication {
@@ -9,7 +9,7 @@ export class TestableApplication {
 
     constructor() {
         this.fakeRaceResultProvider = new FakeRaceResultProvider();
-        this.app = new Application(new FakeBetRepository(), this.fakeRaceResultProvider);
+        this.app = new Application(new BetRepositoryFake(), this.fakeRaceResultProvider);
     }
 
     async getWinners() {
