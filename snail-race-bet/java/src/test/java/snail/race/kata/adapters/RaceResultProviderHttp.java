@@ -15,8 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RaceResultProviderHttp {
     Races invokeResultEndpoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/"))
-                .build();
+        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         assertThat(response.statusCode()).isEqualTo(200);
         assertThat(response.body()).isNotEmpty();
@@ -34,10 +33,17 @@ class RaceResultProviderHttp {
         }
 
         List<RaceResultProvider.SnailRace> snailRaces = races.races.stream()
-                .map(r -> new RaceResultProvider.SnailRace(r.raceId, r.timestamp, null)).toList();
+                .map(r -> new RaceResultProvider.SnailRace(r.raceId, r.timestamp, makePodium(r))).toList();
         var result = new RaceResultProvider.SnailRaces(snailRaces);
 
         return result;
+    }
+
+    private RaceResultProvider.Podium makePodium(Race race) {
+        List<RaceResultProvider.Snail> list = race.snails.stream()
+                // TODO sort snails by duration
+                .map(s -> new RaceResultProvider.Snail(s.number, s.name)).toList();
+        return new RaceResultProvider.Podium(list.get(0), list.get(1), list.get(2));
     }
 
     static class Race {

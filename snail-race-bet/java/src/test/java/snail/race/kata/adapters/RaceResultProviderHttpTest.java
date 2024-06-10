@@ -22,6 +22,21 @@ public class RaceResultProviderHttpTest {
         RaceResultProvider.SnailRaces results = new RaceResultProviderHttp().getResults();
         assertThat(results).isNotNull();
         assertThat(results.races()).isNotEmpty();
+        RaceResultProvider.SnailRace firstRace = results.races().get(0);
+        assertThat(firstRace).isNotNull();
+    }
+    @Test
+    void provides_snail_race_results_with_all_podium_and_timestamp() {
+        RaceResultProvider.SnailRaces results = new RaceResultProviderHttp().getResults();
+        RaceResultProvider.SnailRace firstRace = results.races().get(0);
+        assertThat(firstRace.raceId()).isNotEqualTo(0);
+        assertThat(firstRace.timestamp()).isNotEqualTo(0);
+        assertThat(firstRace.podium()).isNotNull();
+    }
+
+    @Disabled
+    void provides_a_sorted_podium() {
+
     }
 
 
