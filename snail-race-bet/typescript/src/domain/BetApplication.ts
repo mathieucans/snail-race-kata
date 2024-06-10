@@ -1,8 +1,10 @@
 import {BetRepository} from "./BetRepository";
 import {RaceResultProvider} from "./RaceResultProvider";
 
-export class Application {
-    constructor(private betRepository: BetRepository, private raceResultProvider: RaceResultProvider) {
+export class BetApplication {
+    constructor(
+        private betRepository: BetRepository,
+        private raceResultProvider: RaceResultProvider) {
 
     }
 
@@ -10,7 +12,7 @@ export class Application {
 
     }
 
-    async getWinners(date: number) {
+    async getWinnersForLastRace() {
         return undefined;
     }
 }
