@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BetApplicationTest {
 
     BetApplication betApplication;
-    FakeSnailRacesProvider raceResultProvider = new FakeSnailRacesProvider();
+    RaceResultProviderFake raceResultProvider = new RaceResultProviderFake();
 
     @BeforeEach
     void setUp() {
