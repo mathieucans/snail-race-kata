@@ -12,7 +12,7 @@ class BetApplicationTest {
 
     @BeforeEach
     void setUp() {
-        betApplication = new BetApplication(new FakeBetRepository(), raceResultProvider);
+        betApplication = new BetApplication(new BetRepositoryFake(), raceResultProvider);
     }
 
     @Test
