@@ -17,8 +17,7 @@ class BetApplicationTest {
 
     @Test
     void no_winners_when_no_bet_is_placed() {
-        int whateverDate = 0;
-        var winners = betApplication.getWinners(whateverDate);
+        var winners = betApplication.getWinnersForLastRace();
         assertTrue(winners.isEmpty());
     }
 

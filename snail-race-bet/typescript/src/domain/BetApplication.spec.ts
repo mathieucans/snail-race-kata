@@ -1,20 +1,19 @@
-import {RaceResultProvider} from "./RaceResultProvider";
 import {RaceResultProviderFake} from "./RaceResultProviderFake";
 import {BetRepositoryFake} from "./BetRepositoryFake";
-import {Application} from "./Application";
+import {BetApplication} from "./BetApplication";
 import {Winners} from "./Winners";
 
-describe('SnailGamblingApplication', () => {
+describe('BetApplication', () => {
     let raceResultProvider: RaceResultProviderFake;
-    let app: Application;
+    let app: BetApplication;
 
     beforeEach(() => {
         raceResultProvider = new RaceResultProviderFake()
-        app = new Application(new BetRepositoryFake(), raceResultProvider);
+        app = new BetApplication(new BetRepositoryFake(), raceResultProvider);
 
     });
     it('no winners when no Bet is placed', async () => {
-        expect(await app.getWinners(Date.now())).toEqual(new Winners([]));
+        expect(await app.getWinnersForLastRace()).toEqual(new Winners([]));
     });
 
     it('win when the podium exactly matches the bet', () => {

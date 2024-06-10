@@ -16,7 +16,7 @@ public class BetApplication {
              int third) {
     }
 
-    List<Winner> getWinners(int date) {
+    List<Winner> getWinnersForLastRace() {
         return null;
     }
 }
