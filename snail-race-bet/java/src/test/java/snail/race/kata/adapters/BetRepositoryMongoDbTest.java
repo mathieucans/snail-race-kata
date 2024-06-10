@@ -14,7 +14,7 @@ import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class BetRepositoryMongoDbTest extends AbstractBetRepositoryTest {
+public class BetRepositoryMongoDbTest extends BetRepositoryContract {
     MongoClient mongoClient;
 
     @BeforeEach

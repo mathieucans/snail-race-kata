@@ -17,7 +17,7 @@ writing a bet application.
 Run the docker hub image
 ```shell
    docker run --rm -d -p8000:8000 --name snail-race-server mathieucans/snail-race-server:latest
-```
+```   
 
 Verify the race server status
 ```shell
