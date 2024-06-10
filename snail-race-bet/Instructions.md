@@ -5,8 +5,8 @@
 
 The application is about bet on snail races 🐌🏁.
 
-The application can register bet and determine winners.
-The application has two external dependencies :
+The application can register bet and determine winners for the last race.
+The application has two externals dependencies :
 - a repository where store and retrieves bets
 - a race result provider
 
@@ -23,6 +23,7 @@ The application has two external dependencies :
     2. Implement the BetRepositoryFake to pass it tests
 
 ## Step 2: Contract test a readonly dependency
+
 1. Use test to implement the RaceResultProvider interface based on the real server
 2. Use the same tests to implement a RaceResultProviderFake that have same behaviour
 
