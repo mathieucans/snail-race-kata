@@ -16,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class MongoDbBetRepositoryTest {
+public class BetRepositoryMongoDbTest {
     MongoClient mongoClient;
-    MongoDbBetRepository repository;
+    BetRepositoryMongoDb repository;
 
     @BeforeEach
     void setUp() {
@@ -29,7 +29,7 @@ public class MongoDbBetRepositoryTest {
 
         database.getCollection("bet", Bet.class).drop();
 
-        repository = new MongoDbBetRepository(database);
+        repository = new BetRepositoryMongoDb(database);
 
     }
 

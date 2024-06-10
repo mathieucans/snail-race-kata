@@ -6,8 +6,8 @@ import snail.race.kata.domain.BetRepository;
 
 import java.util.List;
 
-public class MongoDbBetRepository implements BetRepository {
-    public MongoDbBetRepository(MongoDatabase database) {
+public class BetRepositoryMongoDb implements BetRepository {
+    public BetRepositoryMongoDb(MongoDatabase database) {
 
     }
 
