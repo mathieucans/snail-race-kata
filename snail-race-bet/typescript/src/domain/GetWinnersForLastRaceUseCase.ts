@@ -10,12 +10,12 @@ function matchExactly(pronostic: PodiumPronostic, podium: Podium) : boolean {
 
 const threeSeconds = 3000
 
-export class GetWinnersUseCase {
+export class GetWinnersForLastRaceUseCase {
     constructor(private betRepository: BetRepository, private raceResultProvider: RaceResultProvider) {
 
     }
 
-    async getWinners() {
+    async getWinnersForLastRace() {
         const results = await this.raceResultProvider.races();
         if(results.races.length ===0 ){
             return noWinner;

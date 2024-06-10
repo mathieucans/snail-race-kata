@@ -1,13 +1,13 @@
 import {Bet, BetRepository, PodiumPronostic} from "./BetRepository";
 import {RaceResultProvider} from "./RaceResultProvider";
-import {GetWinnersUseCase} from "./GetWinnersUseCase";
+import {GetWinnersForLastRaceUseCase} from "./GetWinnersForLastRaceUseCase";
 import {PlaceBetUseCase} from "./PlaceBetUseCase";
 
-export class Application {
-    private getWinnersUseCase: GetWinnersUseCase;
+export class BetApplication {
+    private getWinnersUseCase: GetWinnersForLastRaceUseCase;
     private placeBetUseCase: PlaceBetUseCase;
     constructor(private betRepository: BetRepository, private raceResultProvider: RaceResultProvider) {
-        this.getWinnersUseCase = new GetWinnersUseCase(betRepository, raceResultProvider)
+        this.getWinnersUseCase = new GetWinnersForLastRaceUseCase(betRepository, raceResultProvider)
         this.placeBetUseCase = new PlaceBetUseCase(betRepository)
 
     }
@@ -16,8 +16,8 @@ export class Application {
         await this.placeBetUseCase.placeBet(new Bet(gambler, new PodiumPronostic(first, second, third), timestamp))
     }
 
-    async getWinners() {
-        return await this.getWinnersUseCase.getWinners()
+    async getWinnersForLastRace() {
+        return await this.getWinnersUseCase.getWinnersForLastRace()
     }
 
 

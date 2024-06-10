@@ -8,7 +8,7 @@ describe('Gambler', () => {
     it('should not win when no Bet is placed', async () => {
         const app = new TestableApplication()
 
-        const result = await app.getWinners()
+        const result = await app.getWinnersForLastRace()
         expect(result).toEqual(noWinner)
     });
 
@@ -22,7 +22,7 @@ describe('Gambler', () => {
         let podium = new Podium(new Snail(1, 'Turbo'), new Snail(2, 'Flash'), new Snail(3, 'Speedy'));
         app.simulateRaceResult(fourMinutesLater, podium)
 
-        const result = await app.getWinners()
+        const result = await app.getWinnersForLastRace()
         expect(result).toEqual(new Winners(["me"]))
     });
 
@@ -36,7 +36,7 @@ describe('Gambler', () => {
         let podium = new Podium(new Snail(1, 'Turbo'), new Snail(2, 'Flash'), new Snail(3, 'Speedy'));
         app.simulateRaceResult(fourMinutesLater, podium)
 
-        const result = await app.getWinners()
+        const result = await app.getWinnersForLastRace()
         expect(result).toEqual(noWinner)
     })
 
@@ -50,7 +50,7 @@ describe('Gambler', () => {
         let twoSecondsLater = Date.parse("2021-01-01T00:00:02Z");
         app.simulateRaceResult(twoSecondsLater, podium)
 
-        const result = await app.getWinners()
+        const result = await app.getWinnersForLastRace()
         expect(result).toEqual(noWinner)
     });
 
@@ -68,7 +68,7 @@ describe('Gambler', () => {
         let matchingPodium = new Podium(new Snail(1, 'Turbo'), new Snail(2, 'Flash'), new Snail(3, 'Speedy'));
         app.simulateRaceResult(nineMinutesLater, matchingPodium)
 
-        const result = await app.getWinners()
+        const result = await app.getWinnersForLastRace()
         expect(result).toEqual(noWinner)
     });
 });
