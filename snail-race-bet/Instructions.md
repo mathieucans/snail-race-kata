@@ -24,7 +24,7 @@ The application has two external dependencies :
 
 ## Step 2: Contract test a readonly dependency
 1. Use test to implement the RaceResultProvider interface based on the real server
-2. Use the same tests to implement a FakeRaceResultProvider that have same behaviour
+2. Use the same tests to implement a RaceResultProviderFake that have same behaviour
 
 ## Step 3: Use simulators to write application test following the business rules
 
