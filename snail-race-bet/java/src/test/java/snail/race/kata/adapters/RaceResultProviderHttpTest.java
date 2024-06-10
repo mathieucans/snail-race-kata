@@ -17,7 +17,7 @@ public class RaceResultProviderHttpTest {
         assertThat(result.races.size()).isGreaterThan(0);
     }
 
-    @Disabled
+    @Test
     void provides_snail_race_results() {
         RaceResultProvider.SnailRaces results = new RaceResultProviderHttp().getResults();
         assertThat(results).isNotNull();

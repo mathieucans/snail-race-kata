@@ -33,7 +33,11 @@ class RaceResultProviderHttp {
             throw new RuntimeException(e);
         }
 
-        return null;
+        List<RaceResultProvider.SnailRace> snailRaces = races.races.stream()
+                .map(r -> new RaceResultProvider.SnailRace(r.raceId, r.timestamp, null)).toList();
+        var result = new RaceResultProvider.SnailRaces(snailRaces);
+
+        return result;
     }
 
     static class Race {
@@ -54,7 +58,7 @@ class RaceResultProviderHttp {
 
     static class Races {
 
-         public List<Race> races;
+        public List<Race> races;
 
     }
 }
