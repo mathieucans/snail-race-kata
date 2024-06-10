@@ -9,6 +9,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import snail.race.kata.domain.Bet;
+import snail.race.kata.domain.BetRepositoryContract;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;

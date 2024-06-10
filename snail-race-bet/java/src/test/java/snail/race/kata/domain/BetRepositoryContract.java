@@ -1,4 +1,4 @@
-package snail.race.kata.adapters;
+package snail.race.kata.domain;
 
 import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BetRepositoryContract {
-    BetRepository repository;
+    protected BetRepository repository;
 
     @Test
     void register_a_bets() {

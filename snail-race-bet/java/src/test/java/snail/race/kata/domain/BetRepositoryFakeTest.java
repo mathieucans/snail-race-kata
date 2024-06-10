@@ -1,7 +1,6 @@
-package snail.race.kata.adapters;
+package snail.race.kata.domain;
 
 import org.junit.jupiter.api.BeforeEach;
-import snail.race.kata.domain.BetRepositoryFake;
 
 public class BetRepositoryFakeTest extends BetRepositoryContract {
     @BeforeEach
