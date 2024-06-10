@@ -5,11 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BetApplication {
-    private boolean betPlaced;
+    private final BetRepository betRepository;
+    private final RaceResultProvider raceResultProvider;
 
     BetApplication(
             BetRepository betRepository,
             RaceResultProvider raceResultProvider) {
+        this.betRepository = betRepository;
+        this.raceResultProvider = raceResultProvider;
     }
 
     void placeBet(
@@ -18,12 +21,12 @@ public class BetApplication {
              int first,
              int second,
              int third) {
+        this.betRepository.register(new Bet(gambler, new PodiumPronostic( first, second, third), timestamp));
 
-        this.betPlaced = true;
     }
 
     List<Winner> getWinnersForLastRace() {
-        if (!betPlaced) {
+        if (betRepository.findByDateRange(0, Integer.MAX_VALUE).isEmpty()) {
             return List.of();
         }
         return List.of(new Winner("me"));
