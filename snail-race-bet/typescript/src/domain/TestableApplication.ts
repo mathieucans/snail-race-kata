@@ -1,14 +1,14 @@
 import {Application} from "./Application";
-import {FakeRaceResultProvider} from "./FakeRaceResultProvider";
+import {RaceResultProviderFake} from "./RaceResultProviderFake";
 import {BetRepositoryFake} from "./BetRepositoryFake";
 import {Podium} from "./RaceResultProvider";
 
 export class TestableApplication {
     private readonly app: Application;
-    private readonly fakeRaceResultProvider: FakeRaceResultProvider;
+    private readonly fakeRaceResultProvider: RaceResultProviderFake;
 
     constructor() {
-        this.fakeRaceResultProvider = new FakeRaceResultProvider();
+        this.fakeRaceResultProvider = new RaceResultProviderFake();
         this.app = new Application(new BetRepositoryFake(), this.fakeRaceResultProvider);
     }
 
