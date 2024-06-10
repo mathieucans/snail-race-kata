@@ -19,10 +19,10 @@ describe('MongoDbBetRepository', () => {
     })
 
     test('register a bets', async () => {
-        expect(true).toEqual(false);
+        expect('TODO implement BetRepositoryMongoDb').toEqual('to be implemented');
     })
 
     test('retrieve only bets inside the time range', async () => {
-        expect(true).toEqual(false);
+        expect('TODO implement BetRepositoryMongoDb').toEqual('to be implemented');
     })
 })

@@ -40,11 +40,11 @@ public class MongoDbBetRepositoryTest {
 
     @Test
     void register_a_bets() {
-        assertThat(true).isFalse();
+        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
     }
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        assertThat(true).isFalse();
+        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
     }
 }
