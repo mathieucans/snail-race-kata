@@ -10,18 +10,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 class RaceResultProviderHttp implements RaceResultProvider{
     Races invokeResultEndpoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        assertThat(response.statusCode()).isEqualTo(200);
-        assertThat(response.body()).isNotEmpty();
-        System.out.println(response.body());
-        Races result = new ObjectMapper().readValue(response.body(), Races.class);
-        return result;
+
+        return new ObjectMapper().readValue(response.body(), Races.class);
     }
 
     public RaceResultProvider.SnailRaces races() {

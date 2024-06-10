@@ -2,6 +2,7 @@ package snail.race.kata.adapters;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import snail.race.kata.domain.RaceResultProviderContract;
 
 import java.io.IOException;
 

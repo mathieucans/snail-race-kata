@@ -1,4 +1,4 @@
-package snail.race.kata.adapters;
+package snail.race.kata.domain;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
