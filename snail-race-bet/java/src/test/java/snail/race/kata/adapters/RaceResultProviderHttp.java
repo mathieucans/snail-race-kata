@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RaceResultProviderHttp {
+class RaceResultProviderHttp implements RaceResultProvider{
     Races invokeResultEndpoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
@@ -24,7 +24,7 @@ class RaceResultProviderHttp {
         return result;
     }
 
-    public RaceResultProvider.SnailRaces getResults() {
+    public RaceResultProvider.SnailRaces races() {
         Races races = null;
         try {
             races = invokeResultEndpoint();
