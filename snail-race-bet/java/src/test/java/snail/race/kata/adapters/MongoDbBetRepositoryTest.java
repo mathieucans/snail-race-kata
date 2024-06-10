@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
