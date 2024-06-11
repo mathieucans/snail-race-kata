@@ -27,7 +27,7 @@ The application has two externals dependencies :
 1. Use test to implement the RaceResultProvider interface based on the real server
 2. Use the same tests to implement a RaceResultProviderFake that have same behaviour
 
-# Step 2.1 Write an exploratory test agains the http endpoint
+### Step 2.1 Write an exploratory test agains the http endpoint
 Here we do not worry about exposing the infra
 
 * invoke the http endpoint
@@ -55,17 +55,19 @@ class ExampleInvoker {
     }
 }
 ```
-* finalize assertion
-
-### Step 2.2 Encapsulate the infra behind an interface 
-* write a test stating that we want the domain interface
+* extract a method that does all the production logic
 * refactor to put the method in a new class
 * refactor extract the whole lot to a file
 * finalize assertion
-* refactor: create the interface
+
+### Step 2.2 Encapsulate the infra behind an interface 
+* write a new test stating that we want the domain interface
+* finalize assertion
+* refactor: extract the interface (or use an existing one)
 
 ### Step 2.3 Make contract test and simulator
-
+* create the contract test (abstract test class or method)
+* create an entry-point for the in-memory and make it pass
 
 ## Step 3: Use simulators to write application test following the business rules
 
