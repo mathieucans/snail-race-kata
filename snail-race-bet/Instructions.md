@@ -27,6 +27,46 @@ The application has two externals dependencies :
 1. Use test to implement the RaceResultProvider interface based on the real server
 2. Use the same tests to implement a RaceResultProviderFake that have same behaviour
 
+# Step 2.1 Write an exploratory test agains the http endpoint
+Here we do not worry about exposing the infra
+
+* invoke the http endpoint
+
+```java
+class ExampleInvoker {
+    Object invoke() {
+        var httpClient = HttpClient.newHttpClient();
+        var request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
+        HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
+        // ...
+    }
+}
+```
+
+* assert status code
+* assert content
+* use the string to bootstrap classes
+* use object mapper to convert json to object
+```java
+class ExampleInvoker {
+    Whatever invoke() {
+        // ...
+        return new ObjectMapper().readValue(response.body(), Whatever.class);
+    }
+}
+```
+* finalize assertion
+
+### Step 2.2 Encapsulate the infra behind an interface 
+* write a test stating that we want the domain interface
+* refactor to put the method in a new class
+* refactor extract the whole lot to a file
+* finalize assertion
+* refactor: create the interface
+
+### Step 2.3 Make contract test and simulator
+
+
 ## Step 3: Use simulators to write application test following the business rules
 
 You can checkout the branch `start-step3` if needed
