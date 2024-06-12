@@ -16,7 +16,7 @@ public class BetRepositoryMongoDb implements BetRepository {
     }
 
     @Override
-    public List<Bet> findByDateRange(int from, int to) {
+    public List<Bet> findByDateRange(long from, long to) {
         return null;
     }
 }
