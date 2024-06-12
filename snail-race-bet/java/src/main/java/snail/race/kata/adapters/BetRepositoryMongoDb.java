@@ -23,7 +23,7 @@ public class BetRepositoryMongoDb implements BetRepository {
     }
 
     @Override
-    public List<Bet> findByDateRange(int from, int to) {
+    public List<Bet> findByDateRange(long from, long to) {
         var query = new Document("$and", Arrays.asList(
             new Document("timestamp", new Document("$gt", from)),
             new Document("timestamp", new Document("$lt", to))
