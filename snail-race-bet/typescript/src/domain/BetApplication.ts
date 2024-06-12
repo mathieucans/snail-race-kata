@@ -2,6 +2,7 @@ import {BetRepository} from "./BetRepository";
 import {RaceResultProvider} from "./RaceResultProvider";
 
 export class BetApplication {
+
     constructor(
         private betRepository: BetRepository,
         private raceResultProvider: RaceResultProvider) {

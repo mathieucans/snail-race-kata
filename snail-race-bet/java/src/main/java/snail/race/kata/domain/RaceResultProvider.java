@@ -2,22 +2,23 @@ package snail.race.kata.domain;
 
 import java.util.List;
 
-public class RaceResultProvider {
+public interface RaceResultProvider {
 
-    public record Snail(int number, String name) {}
-
-    public record Podium(Snail first,
-                         Snail second,
-                         Snail third)
-    {
+    record Snail(int number, String name) {
     }
 
-    public record SnailRace(int raceId,
-                            long timestamp,
-                            Podium podium)
-    {
+    record Podium(Snail first,
+                  Snail second,
+                  Snail third) {
     }
 
-    public record SnailRaces(List<SnailRace> races) {
+    record SnailRace(int raceId,
+                     long timestamp,
+                     Podium podium) {
     }
+
+    record SnailRaces(List<SnailRace> races) {
+    }
+
+    SnailRaces races();
 }
