@@ -1,6 +1,8 @@
 export class Winners {
-    constructor(private names: string[]) {
+    constructor(private winners: string[]) {
 
     }
 
 }
+
+export const noWinner = new Winners([]);

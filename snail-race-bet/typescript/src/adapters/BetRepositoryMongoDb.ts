@@ -6,7 +6,7 @@ export class BetRepositoryMongoDb implements BetRepository {
     }
 
     async register(bet: Bet): Promise<void> {
-        await this.getCollection().insertOne(bet);
+        await this.getCollection().insertOne({...bet});
     }
     async findByDateRange(from: number, to: number): Promise<Bet[]> {
         return this.getCollection().find({
