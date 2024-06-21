@@ -11,7 +11,7 @@ describe('RaceResultProviderHttp', () => {
         expect(response.status).toEqual(200);
         let data = await response.json();
         expect(data.races.length).toBeGreaterThanOrEqual(5)
-        let lastRace = data.races[5];
+        let lastRace = data.races[4];
         expect(lastRace).toHaveProperty('raceId')
         expect(lastRace).toHaveProperty('snails')
         expect(lastRace.snails.length).toBeGreaterThan(6)
