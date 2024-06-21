@@ -36,10 +36,6 @@ export class SnailRaces {
         this.races = new Array(...races).sort(sortFromMoreToLessRecent)
     }
 
-    static withPodium(snailRaces: SnailRaces, datetime: number, podium: Podium) {
-        return new SnailRaces([...snailRaces.races, new SnailRace(999, datetime, podium)]);
-    }
-
     static withAdditionalResult(snailRaces: SnailRaces, raceId: number, datetime: number, podium: Podium) {
         return new SnailRaces([...snailRaces.races, new SnailRace(raceId, datetime, podium)]);
     }
