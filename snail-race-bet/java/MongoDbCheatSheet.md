@@ -31,6 +31,17 @@ For more information see [insertOne documentation](https://www.mongodb.com/docs/
 
 ## Find Multiple Documents with Deserialization
 
+### Deserialize all document of the collection
+The following example deserialize all documents in an ArrayList
+
+```java
+database.getCollection("vehicles",Vehicle .class)
+    .find()
+    .into(new ArrayList<>);
+```
+
+
+### Find document with filters
 The following example list all vehicles with less than 4 wheels and at least 3 passengers in an ArrayList. 
 
 ```java
