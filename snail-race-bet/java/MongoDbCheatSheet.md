@@ -3,7 +3,7 @@ Mongo DB client cheat sheet
 
 This kata is configured with the [Java Sync Driver](https://www.mongodb.com/docs/drivers/java/sync/upcoming/) and 
 [PojoCodecProvider](https://www.mongodb.com/docs/drivers/java/sync/current/fundamentals/data-formats/pojo-customization/)
-librairies. 
+libraries. 
 
 ## Connection to database
 
