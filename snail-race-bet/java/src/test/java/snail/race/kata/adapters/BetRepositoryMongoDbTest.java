@@ -10,6 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
+import snail.race.kata.domain.PodiumPronostic;
+
+import java.util.List;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,7 +43,19 @@ public class BetRepositoryMongoDbTest {
 
     @Test
     void register_a_bets() {
-        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
+        repository.register(new Bet(
+                "Mathieu",
+                new PodiumPronostic(20,12,4),
+                12345
+        ));
+
+        List<Bet> bets = repository.findByDateRange(12345, 12346);
+        assertThat(bets.size()).isEqualTo(1);
+        assertThat(bets.get(0)).isEqualTo(new Bet(
+                "Mathieu",
+                new PodiumPronostic(20,12,4),
+                12345
+        ));
     }
 
     @Test
