@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
 import snail.race.kata.domain.PodiumPronostic;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
@@ -60,6 +61,49 @@ public class BetRepositoryMongoDbTest {
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
+        Bet betBeforeFrom = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12345
+        );
+        Bet betOnFrom = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12346
+        );
+        Bet betAfterFrom = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12347
+        );
+        Bet betBeforeTo = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12369
+        );
+        Bet betOnTo = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12370
+        );
+        Bet betAfterTo = new Bet(
+                "Mathieu",
+                new PodiumPronostic(20, 12, 4),
+                12371
+        );
+        repository.register(betBeforeFrom);
+        repository.register(betOnFrom);
+        repository.register(betAfterFrom);
+        repository.register(betBeforeTo);
+        repository.register(betOnTo);
+        repository.register(betAfterTo);
+
+        List<Bet> bets = repository.findByDateRange(12346, 12370);
+
+        assertThat(bets).isEqualTo(Arrays.asList(
+                betOnFrom,
+                betAfterFrom,
+                betBeforeTo
+        ));
     }
 }
