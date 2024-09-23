@@ -61,36 +61,12 @@ public class BetRepositoryMongoDbTest {
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        Bet betBeforeFrom = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12345
-        );
-        Bet betOnFrom = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12346
-        );
-        Bet betAfterFrom = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12347
-        );
-        Bet betBeforeTo = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12369
-        );
-        Bet betOnTo = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12370
-        );
-        Bet betAfterTo = new Bet(
-                "Mathieu",
-                new PodiumPronostic(20, 12, 4),
-                12371
-        );
+        Bet betBeforeFrom = new BetBuilder().withTimeStamp(12345).build();
+        Bet betOnFrom = new BetBuilder().withTimeStamp(12346).build();
+        Bet betAfterFrom = new BetBuilder().withTimeStamp(12347).build();
+        Bet betBeforeTo = new BetBuilder().withTimeStamp(12369).build();
+        Bet betOnTo = new BetBuilder().withTimeStamp(12370).build();
+        Bet betAfterTo = new BetBuilder().withTimeStamp(12371).build();
         repository.register(betBeforeFrom);
         repository.register(betOnFrom);
         repository.register(betAfterFrom);
