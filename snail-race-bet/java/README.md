@@ -25,16 +25,19 @@ Verify the race server status
 ```
 
 3. Install dependencies
-   ```shell
-   ./mvnw install
-   ```
+```shell
+./mvnw install
+```
+
 4. Check that requirements by run the following command
-   TODO : create a command for that
+```shell
+./mvnw test -Dtest=RequirementCheckTest
+```
 
 
 5. Run test through your IDE or with the following command
-    ```shell
-    nvm test
-    ``` 
+ ```shell
+ ./mvnw  test
+ ``` 
 
 6. Follow the [kata instructions](../Instructions.md)
