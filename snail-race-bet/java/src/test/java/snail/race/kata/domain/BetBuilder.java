@@ -1,9 +1,4 @@
-package snail.race.kata.adapters;
-
-import snail.race.kata.domain.Bet;
-import snail.race.kata.domain.PodiumPronostic;
-
-import java.security.cert.CertPathBuilder;
+package snail.race.kata.domain;
 
 public class BetBuilder {
 

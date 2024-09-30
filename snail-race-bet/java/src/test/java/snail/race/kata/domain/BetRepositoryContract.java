@@ -1,7 +1,6 @@
 package snail.race.kata.domain;
 
 import org.junit.jupiter.api.Test;
-import snail.race.kata.adapters.BetBuilder;
 
 import java.util.Arrays;
 import java.util.List;
