@@ -16,7 +16,7 @@ public class BetApplication {
 
     void placeBet(
              String gambler,
-             int timestamp,
+             long timestamp,
              int first,
              int second,
              int third) {
