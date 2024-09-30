@@ -17,21 +17,23 @@ export function betRepositoryContract(getRepository: () => BetRepository) {
         ]);
     });
 
-    test('retrieve only bets inside the time range', async () => {
-        const betBeforeFrom = new BetBuilder().withTimeStamp(12345).build();
-        const betOnFrom = new BetBuilder().withTimeStamp(12346).build();
-        const betAfterFrom = new BetBuilder().withTimeStamp(12347).build();
-        const betBeforeTo = new BetBuilder().withTimeStamp(12369).build();
-        const betOnTo = new BetBuilder().withTimeStamp(12370).build();
-        const betAfterTo = new BetBuilder().withTimeStamp(12371).build();
-        await getRepository().register(betBeforeFrom);
-        await getRepository().register(betOnFrom);
-        await getRepository().register(betAfterFrom);
-        await getRepository().register(betBeforeTo);
-        await getRepository().register(betOnTo);
-        await getRepository().register(betAfterTo);
+    async function registerBetAtTimeStamp(timestamp: number) {
+        const bet = new BetBuilder().withTimeStamp(timestamp).build();
+        await getRepository().register(bet);
+        return bet;
+    }
 
-        const bets = await getRepository().findByDateRange(12346, 12370);
+    test('retrieve only bets inside the time range', async () => {
+        const from = 12346;
+        const to = 12370;
+        await registerBetAtTimeStamp(from - 1);
+        const betOnFrom = await registerBetAtTimeStamp(from);
+        const betAfterFrom = await registerBetAtTimeStamp(from + 1);
+        const betBeforeTo = await registerBetAtTimeStamp(to - 1);
+        await registerBetAtTimeStamp(to);
+        await registerBetAtTimeStamp(to + 1);
+
+        const bets = await getRepository().findByDateRange(from, to);
 
         expect(bets).toEqual([
             betOnFrom,

@@ -29,25 +29,27 @@ public abstract class BetRepositoryContract {
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        Bet betBeforeFrom = new BetBuilder().withTimeStamp(12345).build();
-        Bet betOnFrom = new BetBuilder().withTimeStamp(12346).build();
-        Bet betAfterFrom = new BetBuilder().withTimeStamp(12347).build();
-        Bet betBeforeTo = new BetBuilder().withTimeStamp(12369).build();
-        Bet betOnTo = new BetBuilder().withTimeStamp(12370).build();
-        Bet betAfterTo = new BetBuilder().withTimeStamp(12371).build();
-        this.getRepository().register(betBeforeFrom);
-        this.getRepository().register(betOnFrom);
-        this.getRepository().register(betAfterFrom);
-        this.getRepository().register(betBeforeTo);
-        this.getRepository().register(betOnTo);
-        this.getRepository().register(betAfterTo);
+        int from = 12346;
+        int to = 12370;
+        registerBetAtTimestamp(from-1);
+        Bet betOnFrom = registerBetAtTimestamp(from);
+        Bet betAfterFrom = registerBetAtTimestamp(from+1);
+        Bet betBeforeTo = registerBetAtTimestamp(to-1);
+        registerBetAtTimestamp(to);
+        registerBetAtTimestamp(to+1);
 
-        List<Bet> bets = this.getRepository().findByDateRange(12346, 12370);
+        List<Bet> bets = this.getRepository().findByDateRange(from, to);
 
         assertThat(bets).isEqualTo(Arrays.asList(
                 betOnFrom,
                 betAfterFrom,
                 betBeforeTo
         ));
+    }
+
+    private Bet registerBetAtTimestamp(int timpestamp) {
+        Bet bet = new BetBuilder().withTimeStamp(timpestamp).build();
+        this.getRepository().register(bet);
+        return bet;
     }
 }
