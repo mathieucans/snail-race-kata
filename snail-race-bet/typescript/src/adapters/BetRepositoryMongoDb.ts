@@ -1,15 +1,27 @@
 import {Db} from "mongodb";
-import {Bet, BetRepository} from "../domain/BetRepository";
+import {Bet, BetRepository, PodiumPronostic} from "../domain/BetRepository";
 
 export class BetRepositoryMongoDb implements BetRepository {
     constructor(private db: Db) {
     }
 
-    register(bet: Bet): Promise<void> {
-        throw new Error("Method not implemented.");
+    async register(bet: Bet): Promise<void> {
+        await this.getCollection().insertOne({
+            ...bet
+        })
     }
-    findByDateRange(from: number, to: number): Promise<Bet[]> {
-        throw new Error("Method not implemented.");
+
+    async findByDateRange(from: number, to: number): Promise<Bet[]> {
+        return await this.getCollection()
+            .find({
+                timestamp: {$gte : from, $lt:to}
+            })
+            .map(doc => new Bet(
+                doc.gambler,
+                new PodiumPronostic(doc.pronostic.first, doc.pronostic.second, doc.pronostic.third),
+                doc.timestamp
+            ))
+            .toArray()
     }
 
     private getCollection() {
