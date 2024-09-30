@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class BetRepositoryContractTest {
+public abstract class BetRepositoryContract {
     protected abstract BetRepository getRepository();
 
     @Test

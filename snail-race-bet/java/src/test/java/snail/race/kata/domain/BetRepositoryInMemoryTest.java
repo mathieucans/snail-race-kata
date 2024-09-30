@@ -1,9 +1,8 @@
 package snail.race.kata.domain;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-public class BetRepositoryInMemoryTest extends BetRepositoryContractTest{
+public class BetRepositoryInMemoryTest extends BetRepositoryContract {
 
     private BetRepositoryInMemory repository;
 

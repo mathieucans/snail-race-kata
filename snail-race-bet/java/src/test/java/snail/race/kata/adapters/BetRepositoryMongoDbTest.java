@@ -10,13 +10,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import snail.race.kata.domain.Bet;
 import snail.race.kata.domain.BetRepository;
-import snail.race.kata.domain.BetRepositoryContractTest;
+import snail.race.kata.domain.BetRepositoryContract;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class BetRepositoryMongoDbTest extends BetRepositoryContractTest {
+public class BetRepositoryMongoDbTest extends BetRepositoryContract {
     MongoClient mongoClient;
     BetRepositoryMongoDb repository;
 
