@@ -8,19 +8,15 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
-import snail.race.kata.domain.PodiumPronostic;
-
-import java.util.Arrays;
-import java.util.List;
+import snail.race.kata.domain.BetRepository;
+import snail.race.kata.domain.BetRepositoryContractTest;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class BetRepositoryMongoDbTest {
+public class BetRepositoryMongoDbTest extends BetRepositoryContractTest {
     MongoClient mongoClient;
     BetRepositoryMongoDb repository;
 
@@ -42,44 +38,10 @@ public class BetRepositoryMongoDbTest {
         mongoClient.close();
     }
 
-    @Test
-    void register_a_bets() {
-        repository.register(new Bet(
-                "Mathieu",
-                new PodiumPronostic(20,12,4),
-                12345
-        ));
 
-        List<Bet> bets = repository.findByDateRange(12345, 12346);
-        assertThat(bets.size()).isEqualTo(1);
-        assertThat(bets.get(0)).isEqualTo(new Bet(
-                "Mathieu",
-                new PodiumPronostic(20,12,4),
-                12345
-        ));
-    }
 
-    @Test
-    void retrieve_only_bets_inside_the_time_range() {
-        Bet betBeforeFrom = new BetBuilder().withTimeStamp(12345).build();
-        Bet betOnFrom = new BetBuilder().withTimeStamp(12346).build();
-        Bet betAfterFrom = new BetBuilder().withTimeStamp(12347).build();
-        Bet betBeforeTo = new BetBuilder().withTimeStamp(12369).build();
-        Bet betOnTo = new BetBuilder().withTimeStamp(12370).build();
-        Bet betAfterTo = new BetBuilder().withTimeStamp(12371).build();
-        repository.register(betBeforeFrom);
-        repository.register(betOnFrom);
-        repository.register(betAfterFrom);
-        repository.register(betBeforeTo);
-        repository.register(betOnTo);
-        repository.register(betAfterTo);
-
-        List<Bet> bets = repository.findByDateRange(12346, 12370);
-
-        assertThat(bets).isEqualTo(Arrays.asList(
-                betOnFrom,
-                betAfterFrom,
-                betBeforeTo
-        ));
+    @Override
+    protected BetRepository getRepository() {
+        return repository;
     }
 }
