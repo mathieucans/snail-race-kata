@@ -36,7 +36,8 @@ Here we do not worry about exposing the infra
 class ExampleInvoker {
     Object invoke() {
         var httpClient = HttpClient.newHttpClient();
-        var request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
+        var request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results"))
+                .version(HttpClient.Version.HTTP_1_1).build();
         HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
         // ...
     }
