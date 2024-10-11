@@ -27,7 +27,7 @@ The application has two externals dependencies :
 1. Use test to implement the RaceResultProvider interface based on the real server
 2. Use the same tests to implement a RaceResultProviderFake that have same behaviour
 
-### Step 2.1 Write an exploratory test agains the http endpoint
+### Step 2.1 Write an exploratory test against the http endpoint
 Here we do not worry about exposing the infra
 
 * invoke the http endpoint
