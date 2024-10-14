@@ -13,6 +13,6 @@ public class BetRepositoryFake implements BetRepository {
 
     @Override
     public List<Bet> findByDateRange(int from, int to) {
-        return inMemoryBets.stream().filter(bet -> bet.timestamp() > from && bet.timestamp() < to).toList();
+        return inMemoryBets.stream().filter(bet -> bet.timestamp() >= from && bet.timestamp() < to).toList();
     }
 }
