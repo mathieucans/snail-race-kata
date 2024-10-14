@@ -47,8 +47,8 @@ public abstract class BetRepositoryContract {
         ));
     }
 
-    private Bet registerBetAtTimestamp(int timpestamp) {
-        Bet bet = new BetBuilder().withTimeStamp(timpestamp).build();
+    private Bet registerBetAtTimestamp(int timestamp) {
+        Bet bet = new BetBuilder().withTimeStamp(timestamp).build();
         this.getRepository().register(bet);
         return bet;
     }
