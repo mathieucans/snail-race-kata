@@ -5,4 +5,7 @@
 
 export CURRENT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 
-git pull origin "$CURRENT_BRANCH" git add . git commit -m 'Working...' git push origin "$CURRENT_BRANCH"
+git pull origin "$CURRENT_BRANCH"
+git add .
+git commit -m 'Working...'
+git push origin "$CURRENT_BRANCH"
