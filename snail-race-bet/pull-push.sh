@@ -5,6 +5,11 @@
 
 export CURRENT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 
+if $CURRENT_BRANCH == 'main'
+then
+    echo 'Create your own branch before use this script'
+fi
+
 git pull origin "$CURRENT_BRANCH"
 git add .
 git commit -m 'Working...'
