@@ -11,9 +11,15 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class SnailRaceServer {
-    public static Races invokeResultEndpoint() throws IOException, InterruptedException {
+    private final String baseUrl;
+
+    public SnailRaceServer(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public Races invokeResultEndPoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(baseUrl + "/results/")).build();
 
         return new ObjectMapper().readValue(httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body(), Races.class);
     }

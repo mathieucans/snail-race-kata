@@ -11,7 +11,7 @@ class RaceResultProviderHttp implements RaceResultProvider{
     public RaceResultProvider.SnailRaces races() {
         Races races;
         try {
-            races = SnailRaceServer.invokeResultEndpoint();
+            races = new SnailRaceServer("http://localhost:8000").invokeResultEndPoint();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
