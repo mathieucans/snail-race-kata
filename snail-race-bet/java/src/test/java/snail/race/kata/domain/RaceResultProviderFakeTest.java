@@ -2,9 +2,9 @@ package snail.race.kata.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RaceResultProviderFakeTest extends RaceResultProviderContract {
+
+    private RaceResultProviderFake raceResultProviderFake;
 
     @BeforeEach
     void setUp() {
@@ -14,8 +14,12 @@ class RaceResultProviderFakeTest extends RaceResultProviderContract {
                 new RaceResultProvider.Snail(2, "Flash"),
                 new RaceResultProvider.Snail(3, "Speedy"));
         fake.simulateRaceResult(1, 1, podium);
-        raceResultProvider = fake;
+        raceResultProviderFake = fake;
 
     }
 
+    @Override
+    protected RaceResultProvider raceResultProvider() {
+        return raceResultProviderFake;
+    }
 }
