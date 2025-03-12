@@ -29,10 +29,7 @@ class RaceResultProviderHttp implements RaceResultProvider{
             throw new RuntimeException(e);
         }
 
-        List<RaceResultProvider.SnailRace> snailRaces = races.races().stream()
-                .map(r -> new RaceResultProvider.SnailRace(r.raceId(), r.timestamp(), makePodium(r))).toList();
-
-        return new SnailRaces(snailRaces);
+        return RaceResultProviderHttpAntiCorruptionLayer.mapToDomain(races);
     }
 
     private RaceResultProvider.Podium makePodium(Race race) {
