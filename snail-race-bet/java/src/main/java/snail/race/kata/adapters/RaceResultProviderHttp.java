@@ -2,6 +2,8 @@ package snail.race.kata.adapters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import snail.race.kata.domain.RaceResultProvider;
+import snail.race.kata.infrastructure.SnailRaceServer.Race;
+import snail.race.kata.infrastructure.SnailRaceServer.RaceData;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,55 +13,32 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 class RaceResultProviderHttp implements RaceResultProvider{
-    Races invokeResultEndpoint() throws IOException, InterruptedException {
+    RaceData invokeResultEndpoint() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8000/results/")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        return new ObjectMapper().readValue(response.body(), Races.class);
+        return new ObjectMapper().readValue(response.body(), RaceData.class);
     }
 
     public RaceResultProvider.SnailRaces races() {
-        Races races = null;
+        RaceData races;
         try {
             races = invokeResultEndpoint();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        List<RaceResultProvider.SnailRace> snailRaces = races.races.stream()
-                .map(r -> new RaceResultProvider.SnailRace(r.raceId, r.timestamp, makePodium(r))).toList();
-        var result = new RaceResultProvider.SnailRaces(snailRaces);
+        List<RaceResultProvider.SnailRace> snailRaces = races.races().stream()
+                .map(r -> new RaceResultProvider.SnailRace(r.raceId(), r.timestamp(), makePodium(r))).toList();
 
-        return result;
+        return new SnailRaces(snailRaces);
     }
 
     private RaceResultProvider.Podium makePodium(Race race) {
-        List<RaceResultProvider.Snail> list = race.snails.stream()
+        List<RaceResultProvider.Snail> list = race.snails().stream()
                 // TODO sort snails by duration
-                .map(s -> new RaceResultProvider.Snail(s.number, s.name)).toList();
+                .map(s -> new RaceResultProvider.Snail(s.number(), s.name())).toList();
         return new RaceResultProvider.Podium(list.get(0), list.get(1), list.get(2));
-    }
-
-    static class Race {
-        public int raceId;
-        public long timestamp;
-        public List<Snail> snails;
-
-        // getters and setters
-    }
-
-    static class Snail {
-        public int number;
-        public String name;
-        public double duration;
-
-        // getters and setters
-    }
-
-    static class Races {
-
-        public List<Race> races;
-
     }
 }

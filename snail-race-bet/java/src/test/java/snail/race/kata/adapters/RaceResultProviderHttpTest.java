@@ -22,9 +22,9 @@ public class RaceResultProviderHttpTest extends RaceResultProviderContract {
 
     @Test
     void should_provide_something() throws IOException, InterruptedException {
-        RaceResultProviderHttp.Races result = raceResultProviderHttp.invokeResultEndpoint();
+        var result = raceResultProviderHttp.invokeResultEndpoint();
         assertThat(result).isNotNull();
-        assertThat(result.races.size()).isGreaterThan(0);
+        assertThat(result.races().size()).isGreaterThan(0);
     }
 
 
