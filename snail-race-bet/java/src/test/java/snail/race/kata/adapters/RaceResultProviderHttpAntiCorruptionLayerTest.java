@@ -6,7 +6,7 @@ import snail.race.kata.domain.RaceResultProvider.Snail;
 import snail.race.kata.domain.RaceResultProvider.SnailRace;
 import snail.race.kata.domain.RaceResultProvider.SnailRaces;
 import snail.race.kata.infrastructure.SnailRaceServer;
-import snail.race.kata.infrastructure.SnailRaceServer.RaceData;
+import snail.race.kata.infrastructure.SnailRaceServer.Races;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ class RaceResultProviderHttpAntiCorruptionLayerTest {
                 first,
                 second,
                 notOnPodium).build();
-        var raceData = new RaceData(List.of(firstRace));
+        var raceData = new Races(List.of(firstRace));
 
         var snailRaces = RaceResultProviderHttpAntiCorruptionLayer.mapToDomain(raceData);
 
