@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class SnailRaceServer {
-    public record RaceData(
+    public record Races(
             @JsonProperty("races") List<Race> races
     ) {
     }

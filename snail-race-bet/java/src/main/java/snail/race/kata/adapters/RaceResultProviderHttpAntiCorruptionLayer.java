@@ -7,8 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class RaceResultProviderHttpAntiCorruptionLayer {
-    static RaceResultProvider.SnailRaces mapToDomain(SnailRaceServer.RaceData raceData) {
-        return new RaceResultProvider.SnailRaces(raceData.races().stream()
+    static RaceResultProvider.SnailRaces mapToDomain(SnailRaceServer.Races races) {
+        return new RaceResultProvider.SnailRaces(races.races().stream()
                 .map(r -> new RaceResultProvider.SnailRace(
                         r.raceId(),
                         r.timestamp(),
