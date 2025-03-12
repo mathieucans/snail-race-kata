@@ -21,7 +21,7 @@ public class RaceResultProviderHttpTest extends RaceResultProviderContract {
 
     @Test
     void should_provide_something() throws IOException, InterruptedException {
-        var result = SnailRaceServer.invokeResultEndpoint();
+        var result = new SnailRaceServer("http://localhost:8000").invokeResultEndPoint();
         assertThat(result).isNotNull();
         assertThat(result.races().size()).isGreaterThan(0);
     }
