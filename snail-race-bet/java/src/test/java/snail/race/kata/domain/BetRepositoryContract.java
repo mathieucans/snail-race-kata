@@ -31,12 +31,12 @@ public abstract class BetRepositoryContract {
     void retrieve_only_bets_inside_the_time_range() {
         int from = 12346;
         int to = 12370;
-        registerBetAtTimestamp(from-1);
-        Bet betOnFrom = registerBetAtTimestamp(from);
-        Bet betAfterFrom = registerBetAtTimestamp(from+1);
-        Bet betBeforeTo = registerBetAtTimestamp(to-1);
-        registerBetAtTimestamp(to);
-        registerBetAtTimestamp(to+1);
+        var betBeforeFrom = registerBetAtTimestamp(from-1);
+        var betOnFrom = registerBetAtTimestamp(from);
+        var betAfterFrom = registerBetAtTimestamp(from+1);
+        var betBeforeTo = registerBetAtTimestamp(to-1);
+        var betOnTo = registerBetAtTimestamp(to);
+        var betAfterTo = registerBetAtTimestamp(to+1);
 
         List<Bet> bets = this.getRepository().findByDateRange(from, to);
 
