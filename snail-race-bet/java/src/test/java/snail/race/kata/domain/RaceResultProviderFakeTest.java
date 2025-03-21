@@ -14,6 +14,11 @@ class RaceResultProviderFakeTest extends RaceResultProviderContract {
                 new RaceResultProvider.Snail(2, "Flash"),
                 new RaceResultProvider.Snail(3, "Speedy"));
         fake.simulateRaceResult(1, 1, podium);
+        RaceResultProvider.Podium podium2 = new RaceResultProvider.Podium(
+                new RaceResultProvider.Snail(2, "Flash"),
+                new RaceResultProvider.Snail(1, "Turbo"),
+                new RaceResultProvider.Snail(3, "Speedy"));
+        fake.simulateRaceResult(2, 10, podium2);
         raceResultProviderFake = fake;
 
     }
