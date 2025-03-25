@@ -1,6 +1,6 @@
 package snail.race.kata.infrastructure;
 
-import snail.race.kata.infrastructure.SnailRaceServer.Snail;
+import snail.race.kata.adapters.RaceResultProviderHttprRecords.Snail;
 
 public class SnailBuilder {
     private final int number = Math.toIntExact(Math.round(Math.random() * 10000));
