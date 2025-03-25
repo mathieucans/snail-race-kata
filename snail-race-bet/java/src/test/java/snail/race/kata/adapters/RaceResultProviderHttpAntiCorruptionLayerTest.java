@@ -7,11 +7,12 @@ import snail.race.kata.domain.RaceResultProvider.SnailRace;
 import snail.race.kata.domain.RaceResultProvider.SnailRaces;
 import snail.race.kata.adapters.RaceResultProviderHttprRecords.Races;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static snail.race.kata.infrastructure.RaceBuilder.aRace;
-import static snail.race.kata.infrastructure.SnailBuilder.aSnail;
+import static snail.race.kata.adapters.RaceResultProviderHttpAntiCorruptionLayerTest.RaceBuilder.aRace;
+import static snail.race.kata.adapters.RaceResultProviderHttpAntiCorruptionLayerTest.SnailBuilder.aSnail;
 
 class RaceResultProviderHttpAntiCorruptionLayerTest {
 
@@ -46,4 +47,52 @@ class RaceResultProviderHttpAntiCorruptionLayerTest {
         );
     }
 
+    public static class RaceBuilder {
+
+        private final int raceId = Math.toIntExact(Math.round(Math.random() * 10000 + 1));
+        private final long timestamp = Math.round(Math.random() * 100000L * 100000L);
+        private List<RaceResultProviderHttprRecords.Snail> snails = List.of(
+                aSnail().build(),
+                aSnail().build(),
+                aSnail().build(),
+                aSnail().build()
+        );
+
+        public static RaceBuilder aRace() {
+            return new RaceBuilder();
+        }
+
+        public RaceBuilder withSnails(RaceResultProviderHttprRecords.Snail... snails) {
+            this.snails = Arrays.stream(snails).toList();
+            return this;
+        }
+
+        public RaceResultProviderHttprRecords.Race build() {
+            return new RaceResultProviderHttprRecords.Race(
+                    raceId,
+                    timestamp,
+                    snails);
+        }
+    }
+
+    public static class SnailBuilder {
+        private final int number = Math.toIntExact(Math.round(Math.random() * 10000));
+        double duration = Math.random()*1000;
+
+        public static SnailBuilder aSnail() {
+            return new SnailBuilder();
+        }
+
+        public SnailBuilder withDuration(double duration) {
+            this.duration = duration;
+            return this;
+        }
+
+        public RaceResultProviderHttprRecords.Snail build() {
+            return new RaceResultProviderHttprRecords.Snail(
+                    number,
+                    String.format("Snail name %d", number),
+                    duration);
+        }
+    }
 }
