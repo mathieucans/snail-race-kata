@@ -1,6 +1,7 @@
 package snail.race.kata.infrastructure;
 
-import snail.race.kata.infrastructure.SnailRaceServer.Snail;
+import snail.race.kata.adapters.RaceResultProviderHttprRecords;
+import snail.race.kata.adapters.RaceResultProviderHttprRecords.Snail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +28,8 @@ public class RaceBuilder {
         return this;
     }
 
-    public SnailRaceServer.Race build() {
-        return new SnailRaceServer.Race(
+    public RaceResultProviderHttprRecords.Race build() {
+        return new RaceResultProviderHttprRecords.Race(
                 raceId,
                 timestamp,
                 snails);

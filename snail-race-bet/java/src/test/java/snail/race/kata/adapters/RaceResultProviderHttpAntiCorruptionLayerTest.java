@@ -5,8 +5,7 @@ import snail.race.kata.domain.RaceResultProvider.Podium;
 import snail.race.kata.domain.RaceResultProvider.Snail;
 import snail.race.kata.domain.RaceResultProvider.SnailRace;
 import snail.race.kata.domain.RaceResultProvider.SnailRaces;
-import snail.race.kata.infrastructure.SnailRaceServer;
-import snail.race.kata.infrastructure.SnailRaceServer.Races;
+import snail.race.kata.adapters.RaceResultProviderHttprRecords.Races;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ class RaceResultProviderHttpAntiCorruptionLayerTest {
         assertThat(snailRaces).isEqualTo(expectedSnailRace);
     }
 
-    private static Podium createPodium(SnailRaceServer.Snail first, SnailRaceServer.Snail second, SnailRaceServer.Snail third) {
+    private static Podium createPodium(RaceResultProviderHttprRecords.Snail first, RaceResultProviderHttprRecords.Snail second, RaceResultProviderHttprRecords.Snail third) {
         return new Podium(
                 new Snail(first.number(), first.name()),
                 new Snail(second.number(), second.name()),
