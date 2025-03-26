@@ -35,12 +35,7 @@ public class BetApplication {
     private Stream<Bet> findExactMatchBets(List<Bet> bets, RaceResultProvider.SnailRace race) {
         return bets.stream()
                 .filter(bet -> bet.isInTimeFor(race))
-                .filter(bet -> {
-                    RaceResultProvider.Podium podium = race.podium();
-                    return bet.pronostic().first() == podium.first().number() &&
-                            bet.pronostic().second() == podium.second().number() &&
-                            bet.pronostic().third() == podium.third().number();
-
-                });
+                .filter(bet -> bet.betIsOn(race.podium()));
     }
+
 }
