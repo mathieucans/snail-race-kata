@@ -1,5 +1,6 @@
 package snail.race.kata.adapters;
 
+import org.jetbrains.annotations.NotNull;
 import snail.race.kata.domain.RaceResultProvider;
 
 import java.util.Comparator;
@@ -8,10 +9,14 @@ import java.util.List;
 public class RaceResultProviderHttpAntiCorruptionLayer {
     static RaceResultProvider.SnailRaces mapToDomain(RaceResultProviderHttprRecords.Races races) {
         return new RaceResultProvider.SnailRaces(races.races().stream()
-                .map(r -> new RaceResultProvider.SnailRace(
-                        r.raceId(),
-                        r.timestamp(),
-                        createPodium(r.snails()))).toList());
+                .map(RaceResultProviderHttpAntiCorruptionLayer::mapSingleRace).toList());
+    }
+
+    private static RaceResultProvider.SnailRace mapSingleRace(RaceResultProviderHttprRecords.Race r) {
+        return new RaceResultProvider.SnailRace(
+                r.raceId(),
+                r.timestamp(),
+                createPodium(r.snails()));
     }
 
     private static RaceResultProvider.Podium createPodium(List<RaceResultProviderHttprRecords.Snail> snails) {
