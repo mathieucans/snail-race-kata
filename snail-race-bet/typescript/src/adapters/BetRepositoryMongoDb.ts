@@ -5,11 +5,16 @@ export class BetRepositoryMongoDb implements BetRepository {
     constructor(private db: Db) {
     }
 
-    register(bet: Bet): Promise<void> {
-        throw new Error("Method not implemented.");
+    async register(bet: Bet): Promise<void> {
+        await this.getCollection().insertOne({...bet});
     }
-    findByDateRange(from: number, to: number): Promise<Bet[]> {
-        throw new Error("Method not implemented.");
+    async findByDateRange(from: number, to: number): Promise<Bet[]> {
+        return this.getCollection().find({
+            timestamp: {
+                $gte: from,
+                $lt: to
+            }
+        }, ).map((d) => new Bet(d.gambler, d.pronostic, d.timestamp)).toArray()
     }
 
     private getCollection() {
