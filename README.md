@@ -11,10 +11,8 @@ Open the snail-race-bet of the language of your choice and follow dedicated inst
 
 For example : open the ./snail-race-bet/typescript/ for typescript 
 
-# Requirement
+Available lanquage:
+ - [typescript](./snail-race-bet/typescript/README.md)
+ - [java](./snail-race-bet/java/README.md)
 
-You need a docker container runtimes and internet connection
 
-# ⚠️ Warning
-
-You don't need to edit or modify the snail-race-server to run this kata

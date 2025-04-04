@@ -35,8 +35,4 @@ Verify the race server status
 
 <img alt="img.png" src="requirement-checked.png" style="border: Solid 1px"/>
 
-5. Run test through your IDE or with the following command
-    ```shell
-    npm run test
-    ``` 
-6. Follow the [kata instructions](../Instructions.md)
+5. Follow the [kata instructions](../Instructions.md)
