@@ -7,6 +7,7 @@ import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import snail.race.kata.domain.Bet;
@@ -40,11 +41,15 @@ public class BetRepositoryMongoDbTest {
 
     @Test
     void register_a_bets() {
-        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
+        // register a bet
+        // How can we verify the bet is actually inserted ?
+        // "Rien n'est plus dangereux qu'une idée quand on en a qu'une" (Emile Chartier)
+        // TIPS : Find some (>=3) options before commiting to one
+        Assertions.fail("TODO : write the test, then the implementation😉");
     }
 
     @Test
     void retrieve_only_bets_inside_the_time_range() {
-        assertThat("TODO implement BetRepositoryMongoDb").isEqualTo("to be implemented");
+        Assertions.fail("TODO : write the test, then the implementation😉");
     }
 }

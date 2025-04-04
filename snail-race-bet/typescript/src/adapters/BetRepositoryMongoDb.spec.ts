@@ -19,10 +19,14 @@ describe('BetRepositoryMongoDb', () => {
     })
 
     test('register a bets', async () => {
-        expect('TODO implement BetRepositoryMongoDb').toEqual('to be implemented');
+        // register a bet
+        // How can we verify the bet is actually inserted ?
+        // "Rien n'est plus dangereux qu'une idée quand on en a qu'une" (Emile Chartier)
+        // TIPS : Find some (>=3) options before commiting to one
+        fail('TODO : write the test, then the implementation😉');
     })
 
     test('retrieve only bets inside the time range', async () => {
-        expect('TODO implement BetRepositoryMongoDb').toEqual('to be implemented');
+        fail('TODO : write the test, then the implementation😉');
     })
 })
