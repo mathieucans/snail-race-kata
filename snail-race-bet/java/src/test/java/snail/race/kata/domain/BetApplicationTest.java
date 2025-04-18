@@ -38,11 +38,9 @@ class BetApplicationTest {
     @Test
     void no_winners_when_there_is_no_exact_match() {
         betApplication.placeBet("me", 1, 9, 8, 7);
-        raceResultProvider.simulateRaceResult(33, 1, new RaceResultProvider.Podium(
-                new RaceResultProvider.Snail(6, "Not nine"),
-                new RaceResultProvider.Snail(8, "Flash"),
-                new RaceResultProvider.Snail(7, "Speedy")
-        ));
+        // make the test more explicit with a helper on the simulator
+        raceResultProvider.configureRaceWithPodium(6, 8, 7);
+
         assertThat(betApplication.getWinnersForLastRace()).isEmpty();
     }
 
